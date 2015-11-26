@@ -1,5 +1,5 @@
 # Packages
----
+
 ### Essential
 * [docblockr](https://atom.io/packages/docblockr) - A helper package for writing documentation
 * [pigments](https://atom.io/packages/pigments) - A package to display colors in project and files.

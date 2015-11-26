@@ -1,5 +1,4 @@
 # Atom
----
 
 ### Index
 * [Config](config.cson)
