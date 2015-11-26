@@ -17,7 +17,11 @@ function setupAtom() {
     apm install language-blade
     apm install blade-snippets
 
-    # 2. update config and styles file
+    # 2. Install Theme/s
+    apm install seti-ui
+    apm install seti-syntax
+
+    # 3. update config and styles file
     cd ~/.atom
     git clone https://github.com/lukasjuhas/dotfiles.git
     mv -v dotfiles/Atom/config.cson ~/.atom
