@@ -1,0 +1,51 @@
+"*":
+  "exception-reporting":
+    userId: "4434ba69-e1e1-c7f6-6dd8-79d328e27ea0"
+  welcome:
+    showOnStartup: false
+  core:
+    themes: [
+      "seti-ui"
+      "seti-syntax"
+    ]
+  editor:
+    invisibles: {}
+    lineHeight: 1.6
+    fontSize: 13
+    tabType: "soft"
+    scrollPastEnd: true
+  docblockr:
+    extra_tags: [
+      "@author Lukas Juhas"
+      "@date {{date}}"
+    ]
+  minimap: {}
+  "linter-jshint": {}
+  "linter-eslint":
+    browser: true
+    jquery: true
+    node: true
+    esnext: true
+    camelcase: false
+    eqeqeq: true
+    indent: 2
+    latedef: true
+    maxlen: 80
+    newcap: true
+    quotmark: "single"
+    strict: true
+    undef: true
+    unused: true
+    eqnull: true
+  "linter-scss-lint": {}
+  "php-cs-fixer":
+    executablePath: "/usr/local/bin/php-cs-fixer"
+    showInfoNotifications: true
+  react: {}
+  linter: {}
+  fonts:
+    fontFamily: "Roboto Mono"
+  "imdone-atom": {}
+  "atom-beautify":
+    _analyticsUserId: "58d14ccb-837d-4961-a796-cf5e185ccb8b"
+    analytics: false
