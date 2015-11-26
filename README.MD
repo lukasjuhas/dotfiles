@@ -3,6 +3,7 @@ dotfiles, configs I use on a day-to-day basis.
 
 ### Index
 * [Atom](Atom/)
+  * [Automated Installation](Atom/)
   * [Config](Atom/config.cson)
   * [Custom Styles](Atom/styles.less)
   * [Packages](Atom/packages.MD)

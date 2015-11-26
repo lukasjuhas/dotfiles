@@ -10,7 +10,13 @@
 - This will install packages, update config and styles files
 
 ```sh
-git clone https://github.com/lukasjuhas/dotfiles/Atom/setupAtom.sh
-chmod +x setupAtom.sh
-mv setupAtom.sh /usr/local/bin
+git clone https://github.com/lukasjuhas/dotfiles.git
+chmod +x dotfiles/Atom/setupAtom
+mv dotfiles/Atom/setupAtom /usr/local/bin
+rm -rf dotfiles
+```
+### Usage
+run:
+```sh
+setupAtom
 ```

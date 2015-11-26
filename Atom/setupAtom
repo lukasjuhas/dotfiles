@@ -17,14 +17,12 @@ function setupAtom() {
     apm install language-blade
     apm install blade-snippets
 
-    # 2. update config file
+    # 2. update config and styles file
     cd ~/.atom
-    git clone https://github.com/lukasjuhas/dotfiles/Atom/config.cson
-
-    # 2. update styles file
-    cd ~/.atom
-    git clone https://github.com/lukasjuhas/dotfiles/Atom/styles.less
-
+    git clone https://github.com/lukasjuhas/dotfiles.git
+    mv -v dotfiles/Atom/config.cson ~/.atom
+    mv -v dotfiles/Atom/styles.less ~/.atom
+    rm -rf dotfiles
 }
 
 setupAtom
