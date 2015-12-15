@@ -6,8 +6,8 @@ function mkd() {
     mkdir -p "$@" && cd "$@"
 }
 
-# pretty visual git history
-alias git-pretty="git log --graph --oneline --all --decorate"
+# visual git history
+alias gitlog="git log --graph --oneline --all --decorate"
 
 # open up emoji cheat sheet in browser
 alias emojis="open http://www.emoji-cheat-sheet.com/"
@@ -16,4 +16,15 @@ alias emojis="open http://www.emoji-cheat-sheet.com/"
 alias wtf="source ~/.zshrc"
 
 # open these directories from anywhere
-alias Work="~/Workspace/"
+alias workspace="~/Workspace/"
+alias sites="~/Sites/"
+
+# create new laravel project using composer
+function laravel() {
+    composer create-project laravel/laravel "$@" --prefer-dist
+}
+
+# remove directory and all files / folders iniside
+function murder() {
+    rm -rf "$@"
+}
