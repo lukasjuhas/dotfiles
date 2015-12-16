@@ -4,6 +4,7 @@
 * [Config](config.cson)
 * [Custom Styles](styles.less)
 * [Packages](packages.MD)
+* [Custom Snippets](#custom-snippets)
 * [Themes](#themes)
 
 ## Automated Installation
@@ -20,6 +21,15 @@ $ rm -rf dotfiles
 ```sh
 $ setupAtom
 ```
+
+## Custom Snippets
+
+### Laravel Blade
+* _error_ - error markup
+* _flash_ - flash messages markup
+* _login_ - login form markup
+* _password_ - password form markup
+* _reset_ - reset password form markup
 
 ## Themes
 

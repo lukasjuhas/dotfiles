@@ -7,6 +7,7 @@ dotfiles, configs I use on a day-to-day basis.
   * [Config](Atom/config.cson)
   * [Custom Styles](Atom/styles.less)
   * [Packages](Atom/packages.MD)
+  * [Custom Snippets](Atom/#custom-snippets)
   * [Themes](Atom/#themes)
 * [Terminal](#terminal)
 

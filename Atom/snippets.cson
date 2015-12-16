@@ -1,0 +1,118 @@
+# Your snippets
+#
+# Atom snippets allow you to enter a simple prefix in the editor and hit tab to
+# expand the prefix into a larger code block with templated values.
+#
+# You can create a new snippet in this file by typing "snip" and then hitting
+# tab.
+#
+# An example CoffeeScript snippet to expand log to console.log:
+#
+# '.source.coffee':
+#   'Console log':
+#     'prefix': 'log'
+#     'body': 'console.log $1'
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it here:
+# https://github.com/bevry/cson#what-is-cson
+
+# Laravel Blade templates
+'.text.html.php.blade':
+  'Error Markup':
+    'prefix': 'error'
+    'body': """
+      @if (count($errors) > 0)
+          <div class="alert alert--danger">
+              <ul>
+                  @foreach ($errors->all() as $error)
+                      <li>{{ $error }}</li>
+                  @endforeach
+              </ul>
+          </div>
+      @endif
+    """
+
+  'Flash Markup':
+    'prefix': 'flash'
+    'body': """
+      @if (session('flash_message'))
+          <div class="container">
+          	   <div class="alert alert--{{ isset(session('flash_message')['status']) ? session('flash_message')['status'] : 'success' }}">
+                   {!! session('flash_message')['content'] !!}
+                   <a href="#" class="alert__dismiss">&times;</a>
+               </div>
+          </div>
+      @endif
+    """
+
+  'Login Form Markup':
+    'prefix': 'login'
+    'body': """
+      {!! Form::open(['url' => '/auth/login', 'class' => 'form form--auth form--auth--login']) !!}
+          <div class ="form__group">
+              {!! Form::label('email', 'Email', ['class' => 'form__label']) !!}
+              {!! Form::email('email', old('email'), ['class' => 'form__control']) !!}
+              {!! $errors->first('email') ? '<span class="form__error">' . $errors->first('email') . '</span>' : null !!}
+          </div>
+          <div class="form__group">
+              {!! Form::label('password', 'Password', ['class' => 'form__label']) !!}
+              {!! Form::password('password', null, ['class' => 'form__control']) !!}
+              {!! $errors->first('password') ? '<span class="form__error">' . $errors->first('password') . '</span>' : null !!}
+          </div>
+          <div class="form__group clearfix">
+              <div class="alignleft">
+                  {!! Form::checkbox('remember', null, null, ['id' => 'remember']) !!}
+                  {!! Form::label('remember', 'Remember Me', ['class' => '']) !!}
+              </div>
+              <a class="alignright" href="{{ url('/password/email') }}">Forgotten password?</a>
+          </div>
+          <div class="form__group">
+              <button type="submit" class="btn btn--block">Sign in</button>
+          </div>
+      {!! Form::close() !!}
+    """
+
+  'Password Form Markup':
+    'prefix': 'password'
+    'body': """
+      {!! Form::open(['url' => '/password/email', 'class' => 'form form--auth form--auth--email']) !!}
+          <div class ="form__group">
+              {!! Form::label('email', 'Email Address', ['class' => 'form__label']) !!}
+              {!! Form::email('email', old('email'), ['class' => 'form__control']) !!}
+              {!! $errors->first('email') ? '<span class="form__error">' . $errors->first('email') . '</span>' : null !!}
+          </div>
+          <div class="form__group">
+              <button type="submit" class="btn btn--block">Send Password Reset Link</button>
+          </div>
+      {!! Form::close() !!}
+    """
+
+  'Reset Form Markup':
+    'prefix': 'reset'
+    'body': """
+      {!! Form::open(['url' => '/password/reset', 'class' => 'form form--auth form--auth--email']) !!}
+          <input type="hidden" name="token" value="{{ $token }}">
+          <div class ="form__group">
+              {!! Form::label('email', 'Email', ['class' => 'form__label']) !!}
+              {!! Form::email('email', old('email'), ['class' => 'form__control']) !!}
+              {!! $errors->first('email') ? '<span class="form__error">' . $errors->first('email') . '</span>' : null !!}
+          </div>
+
+          <div class="form__group">
+              {!! Form::label('password', 'Password', ['class' => 'form__label']) !!}
+              {!! Form::password('password', null, ['class' => 'form__control']) !!}
+              {!! $errors->first('password') ? '<span class="form__error">' . $errors->first('password') . '</span>' : null !!}
+          </div>
+
+          <div class="form__group">
+              {!! Form::label('password_confirmation', 'Re-enter Password', ['class' => 'form__label']) !!}
+              {!! Form::password('password_confirmation', null, ['class' => 'form__control']) !!}
+              {!! $errors->first('password_confirmation') ? '<span class="form__error">' . $errors->first('password_confirmation') . '</span>' : null !!}
+          </div>
+
+          <div class="form__group">
+              <button type="submit" class="btn btn--block">Reset Password</button>
+          </div>
+      {!! Form::close() !!}
+    """
