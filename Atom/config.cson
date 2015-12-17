@@ -11,9 +11,10 @@
   editor:
     invisibles: {}
     lineHeight: 1.6
-    fontSize: 13
     tabType: "soft"
     scrollPastEnd: true
+    fontSize: 13
+    softWrap: true
   docblockr:
     extra_tags: [
       "@author Lukas Juhas"
@@ -45,7 +46,7 @@
   linter: {}
   fonts:
     fontFamily: "Roboto Mono"
-  "imdone-atom": {}
+  "imdone-atom":
+    openIn: {}
   "atom-beautify":
-    _analyticsUserId: "58d14ccb-837d-4961-a796-cf5e185ccb8b"
     analytics: false
