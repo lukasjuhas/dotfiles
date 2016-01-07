@@ -50,3 +50,7 @@
     openIn: {}
   "atom-beautify":
     analytics: false
+  "autoclose-html":
+    additionalGrammars: [
+      "*"
+    ]

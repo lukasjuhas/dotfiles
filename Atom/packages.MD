@@ -6,6 +6,7 @@
 * [minimap](https://atom.io/packages/minimap) - A preview of the full source code.
 * [color-picker](https://atom.io/packages/color-picker) - Right click or press CMD-SHIFT-C/CTRL-ALT-C to open it.
 * [merge-conflicts](https://atom.io/packages/merge-conflicts) - Resolve git conflicts within Atom
+* [autoclose-html](https://atom.io/packages/autoclose-html) - Will automatically add closing tags when you complete the opening tag.
 
 ### Linters & Beautifiers
 * [linter](https://atom.io/packages/linter) - A Base Linter with Cow Powers

@@ -7,6 +7,7 @@ function setupAtom() {
     apm install minimap
     apm install color-picker
     apm install merge-conflicts
+    apm install autoclose-html
     apm install linter
     apm install linter-eslint
     apm install linter-php
