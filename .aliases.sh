@@ -28,3 +28,17 @@ function laravel() {
 function murder() {
     rm -rf "$@"
 }
+
+# why is my mac slow?
+alias whysoslow="top -o vsize"
+
+# QuickLook preview from command-line
+function ql() {
+    qlmanage -p "$@"
+}
+
+# stop your mac from sleeping for 1h
+alias nobreak="caffeinate -u -t 3600"
+
+# sort files by size in a directory
+alias lsize="ls -lhS"
