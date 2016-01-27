@@ -7,7 +7,6 @@ function setupAtom() {
     apm install minimap
     apm install color-picker
     apm install merge-conflicts
-    apm install autoclose-html
     apm install linter
     apm install linter-eslint
     apm install linter-php
@@ -17,10 +16,17 @@ function setupAtom() {
     apm install imdone-atom
     apm install language-blade
     apm install blade-snippets
+    apm install travis-ci-status
 
     # 2. Install Theme/s
     apm install seti-ui
     apm install seti-syntax
+
+    # emmet
+    cd ~/.atom/packages
+    git clone https://github.com/emmetio/emmet-atom
+    cd emmet-atom
+    npm install
 
     # 3. update config and styles file
     cd ~/.atom

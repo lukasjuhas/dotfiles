@@ -1,56 +1,58 @@
 "*":
-  "exception-reporting":
-    userId: "4434ba69-e1e1-c7f6-6dd8-79d328e27ea0"
-  welcome:
-    showOnStartup: false
-  core:
-    themes: [
-      "seti-ui"
-      "seti-syntax"
-    ]
-  editor:
-    invisibles: {}
-    lineHeight: 1.6
-    tabType: "soft"
-    scrollPastEnd: true
-    fontSize: 13
-    softWrap: true
-  docblockr:
-    extra_tags: [
-      "@author Lukas Juhas"
-      "@date {{date}}"
-    ]
-  minimap: {}
-  "linter-jshint": {}
-  "linter-eslint":
-    browser: true
-    jquery: true
-    node: true
-    esnext: true
-    camelcase: false
-    eqeqeq: true
-    indent: 2
-    latedef: true
-    maxlen: 80
-    newcap: true
-    quotmark: "single"
-    strict: true
-    undef: true
-    unused: true
-    eqnull: true
-  "linter-scss-lint": {}
-  "php-cs-fixer":
-    executablePath: "/usr/local/bin/php-cs-fixer"
-    showInfoNotifications: true
-  react: {}
-  linter: {}
-  fonts:
-    fontFamily: "Roboto Mono"
-  "imdone-atom":
-    openIn: {}
   "atom-beautify":
     analytics: false
   "autoclose-html":
     additionalGrammars: [
       "*"
     ]
+  core:
+    themes: [
+      "seti-ui"
+      "seti-syntax"
+    ]
+  docblockr:
+    extra_tags: [
+      "@author Lukas Juhas"
+      "@date {{date}}"
+    ]
+  editor:
+    fontSize: 13
+    invisibles: {}
+    lineHeight: 1.6
+    scrollPastEnd: true
+    softWrap: true
+    tabType: "soft"
+  "exception-reporting":
+    userId: "4434ba69-e1e1-c7f6-6dd8-79d328e27ea0"
+  fonts:
+    fontFamily: "Roboto Mono"
+  "imdone-atom":
+    openIn: {}
+    todaysJournal: {}
+  linter: {}
+  "linter-eslint":
+    browser: true
+    camelcase: false
+    eqeqeq: true
+    eqnull: true
+    esnext: true
+    indent: 2
+    jquery: true
+    latedef: true
+    maxlen: 80
+    newcap: true
+    node: true
+    quotmark: "single"
+    strict: true
+    undef: true
+    unused: true
+  "linter-jshint": {}
+  "linter-scss-lint": {}
+  minimap: {}
+  "php-cs-fixer":
+    executablePath: "/usr/local/bin/php-cs-fixer"
+    showInfoNotifications: true
+  react: {}
+  "travis-ci-status": {}
+  welcome:
+    showOnStartup: false
