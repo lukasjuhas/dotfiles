@@ -22,12 +22,6 @@ function setupAtom() {
     apm install seti-ui
     apm install seti-syntax
 
-    # emmet
-    cd ~/.atom/packages
-    git clone https://github.com/emmetio/emmet-atom
-    cd emmet-atom
-    npm install
-
     # 3. update config and styles file
     cd ~/.atom
     git clone https://github.com/lukasjuhas/dotfiles.git
