@@ -8,7 +8,7 @@
   core:
     themes: [
       "seti-ui"
-      "seti-syntax"
+      "zero-dark-matrix-syntax"
     ]
   docblockr:
     extra_tags: [
