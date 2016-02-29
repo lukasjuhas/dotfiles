@@ -18,5 +18,12 @@ dotfiles, configs I use on a day-to-day basis.
 * [Oh My ZSH!](http://ohmyz.sh/)
   * [.zshrc](.zshrc)
 
+### Sensible OS X defaults
+When setting up a new Mac, you may want to set some sensible OS X defaults: (by [@mathiasbynens](https://github.com/mathiasbynens/))
+
+```bash
+./.osx
+```
+
 ---
-Inspired by [@una](https://github.com/una/dotfiles)'s dotfiles. Thank you.
+Inspired and based on many dotfiles from users like [@una](https://github.com/una/dotfiles), [@paulirish](https://github.com/paulirish/dotfiles), [@mathiasbynens](https://github.com/mathiasbynens/dotfiles/). Thank you!

@@ -25,8 +25,8 @@ function setupAtom() {
     # 3. update config and styles file
     cd ~/.atom
     git clone https://github.com/lukasjuhas/dotfiles.git
-    mv -v dotfiles/Atom/config.cson ~/.atom
-    mv -v dotfiles/Atom/styles.less ~/.atom
+    mv -v dotfiles/atom/config.cson ~/.atom
+    mv -v dotfiles/atom/styles.less ~/.atom
     rm -rf dotfiles
 }
 

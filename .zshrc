@@ -85,3 +85,6 @@ source $ZSH/oh-my-zsh.sh
 
 # My alliases
 source "/Users/LukasJuhas/.aliases.sh"
+
+# My Functions
+source "/Users/LukasJuhas/.functions.sh"
