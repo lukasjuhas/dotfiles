@@ -9,6 +9,11 @@ function mkd() {
 # visual git history
 alias gitlog="git log --graph --oneline --all --decorate"
 
+# amend last commit message
+function oops() {
+    git commit --amend -m "$@"
+}
+
 # open up emoji cheat sheet in browser
 alias emojis="open http://www.emoji-cheat-sheet.com/"
 
