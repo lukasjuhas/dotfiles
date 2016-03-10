@@ -16,7 +16,7 @@
       "@date {{date}}"
     ]
   editor:
-    fontSize: 13
+    fontSize: 12
     invisibles: {}
     lineHeight: 1.6
     scrollPastEnd: true

@@ -25,5 +25,12 @@ When setting up a new Mac, you may want to set some sensible OS X defaults: (by 
 ./.osx
 ```
 
+### Install Tools via Homebrew
+Run after installing Homebrew.
+
+```bash
+./.brew
+```
+
 ---
 Inspired and based on many dotfiles from users like [@una](https://github.com/una/dotfiles), [@paulirish](https://github.com/paulirish/dotfiles), [@mathiasbynens](https://github.com/mathiasbynens/dotfiles/). Thank you!
