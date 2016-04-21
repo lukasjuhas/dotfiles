@@ -17,6 +17,24 @@
 # If you are unfamiliar with CSON, you can read more about it here:
 # https://github.com/bevry/cson#what-is-cson
 
+# Barebones
+
+'.text.html.php':
+  'Barebones Column':
+    'prefix': 'bcolumn'
+    'body': """
+      <div class="col col--xs-12 col--sm-12 col--md-6 col--lg-6">
+      </div>
+    """
+
+'.text.html.php':
+  'Barebones Column Offset':
+    'prefix': 'bcoloffset'
+    'body': """
+      <div class="col col--xs-12 col--sm-12 col--md-6 col--lg-6 col--xs-offset-0 col--sm-offset-0 col--md-offset-3 col--lg-offset-3">
+      </div>
+    """
+
 # Laravel Blade templates
 '.text.html.php.blade':
   'Error Markup':
