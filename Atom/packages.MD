@@ -11,6 +11,8 @@
 * [linter](https://atom.io/packages/linter) - A Base Linter with Cow Powers
 * [linter-eslint](https://atom.io/packages/linter-eslint) - Lint JavaScript on the fly, using ESLint
 * [linter-php](https://atom.io/packages/linter-php) - Lint PHP on the fly, using php -l
+* [linter-sass-lint](https://atom.io/packages/linter-sass-lint) - Atom Linter plugin to lint your Sass/SCSS with pure node sass-lint 
+* [linter-csslint](https://atom.io/packages/linter-csslint) - Lint CSS on the fly, using csslint
 * [php-cs-fixer](https://atom.io/packages/php-cs-fixer) - Run the 'PHP Coding Standards Fixer' within Atom
 * [atom-beautify](https://atom.io/packages/atom-beautify) - Beautify HTML, CSS, JavaScript, PHP, Python, Ruby, Java, C, C++, C#, Objective-C, CoffeeScript, TypeScript, and SQL in Atom
 

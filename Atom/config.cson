@@ -7,7 +7,7 @@
     ]
   core:
     themes: [
-      "seti-ui"
+      "atom-material-ui"
       "zero-dark-matrix-syntax"
     ]
   docblockr:
@@ -16,7 +16,7 @@
       "@date {{date}}"
     ]
   editor:
-    fontSize: 12
+    fontSize: 13
     invisibles: {}
     lineHeight: 1.6
     scrollPastEnd: true
@@ -29,7 +29,8 @@
   "imdone-atom":
     openIn: {}
     todaysJournal: {}
-  linter: {}
+  linter:
+    showErrorPanel: false
   "linter-eslint":
     browser: true
     camelcase: false
@@ -47,6 +48,9 @@
     undef: true
     unused: true
   "linter-jshint": {}
+  "linter-sass-lint":
+    configFile: "/Users/LukasJuhas/.sass-lint.yml"
+    noConfigDisable: true
   "linter-scss-lint": {}
   minimap: {}
   "php-cs-fixer":

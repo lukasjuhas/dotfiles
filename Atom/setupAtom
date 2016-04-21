@@ -10,6 +10,8 @@ function setupAtom() {
     apm install linter
     apm install linter-eslint
     apm install linter-php
+    apm install linter-csslint
+    apm install linter-sass-lint
     apm install php-cs-fixer
     apm install atom-beautify
     apm install react
@@ -18,9 +20,10 @@ function setupAtom() {
     apm install blade-snippets
     apm install travis-ci-status
 
-    # 2. Install Theme/s
-    apm install seti-ui
-    apm install seti-syntax
+    # 2. Install Theme/s and co.
+    apm install atom-material-ui
+    apm install file-icons
+    apm install zero-dark-matrix-syntax
 
     # 3. update config and styles file
     cd ~/.atom

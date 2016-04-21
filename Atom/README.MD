@@ -3,6 +3,7 @@
 ### Index
 * [Config](config.cson)
 * [Custom Styles](styles.less)
+* [SASS Lint config](.sass-lint.yml) - Using [Airbnb CSS / Sass Styleguide](https://github.com/airbnb/css)
 * [Packages](packages.MD)
 * [Custom Snippets](#custom-snippets)
 * [Themes](#themes)
@@ -33,6 +34,8 @@ $ setupAtom
 
 ## Themes
 
-### Seti
-* [seti-ui](https://atom.io/themes/seti-ui)
-* [seti-syntax](https://atom.io/themes/seti-syntax)
+### UI
+* [atom-material-ui](https://atom.io/themes/atom-material-ui)
+
+### Syntax
+* [zero-dark-matrix-syntax](https://atom.io/themes/zero-dark-matrix-syntax)
