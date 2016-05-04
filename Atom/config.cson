@@ -6,6 +6,12 @@
       "*"
     ]
   core:
+    closeEmptyWindows: false
+    disabledPackages: [
+      "linter-csslint"
+      "linter-sass-lint"
+    ]
+    openEmptyEditorOnStart: false
     themes: [
       "atom-material-ui"
       "zero-dark-matrix-syntax"
@@ -29,8 +35,7 @@
   "imdone-atom":
     openIn: {}
     todaysJournal: {}
-  linter:
-    showErrorPanel: false
+  linter: {}
   "linter-eslint":
     browser: true
     camelcase: false
@@ -58,5 +63,11 @@
     showInfoNotifications: true
   react: {}
   "travis-ci-status": {}
+  "tree-view":
+    hideIgnoredNames: true
   welcome:
     showOnStartup: false
+".blade.html.php.text":
+  editor:
+    commentEnd: " --}}"
+    commentStart: "{{-- "
