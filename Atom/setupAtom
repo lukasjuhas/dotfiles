@@ -11,6 +11,7 @@ function setupAtom() {
     apm install linter-eslint
     apm install linter-php
     apm install linter-csslint
+    apm install linter-less
     apm install linter-sass-lint
     apm install php-cs-fixer
     apm install atom-beautify
@@ -19,6 +20,7 @@ function setupAtom() {
     apm install language-blade
     apm install blade-snippets
     apm install travis-ci-status
+    apm install wordpress-api
 
     # 2. Install Theme/s and co.
     apm install atom-material-ui

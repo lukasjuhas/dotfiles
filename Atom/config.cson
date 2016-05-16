@@ -12,6 +12,7 @@
       "linter-sass-lint"
     ]
     openEmptyEditorOnStart: false
+    packagesWithKeymapsDisabled: []
     themes: [
       "atom-material-ui"
       "zero-dark-matrix-syntax"

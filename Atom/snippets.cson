@@ -18,7 +18,6 @@
 # https://github.com/bevry/cson#what-is-cson
 
 # Barebones
-
 '.text.html.php':
   'Barebones Column':
     'prefix': 'bcolumn'
