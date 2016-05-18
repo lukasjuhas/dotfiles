@@ -14,7 +14,7 @@ dotfiles, configs I use on a day-to-day basis.
 
 ### Terminal
 * [iTerm2](http://iterm2.com/)
-  * [seti.itermcolors](seti.itermcolors)
+  * [MaterialDark.itermcolors](MaterialDark.itermcolors)
   * [com.googlecode.iterm2.plist](com.googlecode.iterm2.plist)
 * [Oh My ZSH!](http://ohmyz.sh/)
   * [.zshrc](.zshrc)
