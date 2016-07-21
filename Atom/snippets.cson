@@ -17,24 +17,48 @@
 # If you are unfamiliar with CSON, you can read more about it here:
 # https://github.com/bevry/cson#what-is-cson
 
+# General
+
+'.scss.css':
+  'SVG Background Image':
+    'prefix': 'svg background'
+    'body': """
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 10px 10px;
+      background-image: url(images/lol.png);
+      background-image: linear-gradient(transparent, transparent), url(images/lol.svg);
+    """
+
 # Barebones
-'.text.html.php':
+
+'.html.php.blade':
   'Barebones Column':
-    'prefix': 'bcolumn'
+    'prefix': 'brbns column'
     'body': """
       <div class="col col--xs-12 col--sm-12 col--md-6 col--lg-6">
       </div>
     """
 
-'.text.html.php':
+'.html.php.blade':
   'Barebones Column Offset':
-    'prefix': 'bcoloffset'
+    'prefix': 'brbns offset column'
     'body': """
       <div class="col col--xs-12 col--sm-12 col--md-6 col--lg-6 col--xs-offset-0 col--sm-offset-0 col--md-offset-3 col--lg-offset-3">
       </div>
     """
 
+# Wordpress
+
+'.text.html.php':
+  'Link Manager':
+    'prefix': 'linkmanager'
+    'body': """
+      add_filter( 'pre_option_link_manager_enabled', '__return_true' );
+    """
+
 # Laravel Blade templates
+
 '.text.html.php.blade':
   'Error Markup':
     'prefix': 'error'
@@ -55,10 +79,10 @@
     'body': """
       @if (session('flash_message'))
           <div class="container">
-          	   <div class="alert alert--{{ isset(session('flash_message')['status']) ? session('flash_message')['status'] : 'success' }}">
-                   {!! session('flash_message')['content'] !!}
-                   <a href="#" class="alert__dismiss">&times;</a>
-               </div>
+              <div class="alert alert--{{ isset(session('flash_message')['status']) ? session('flash_message')['status'] : 'success' }}">
+                 {!! session('flash_message')['content'] !!}
+                 <a href="#" class="alert__dismiss">&times;</a>
+              </div>
           </div>
       @endif
     """

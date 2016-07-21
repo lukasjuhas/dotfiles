@@ -1,24 +1,24 @@
 #!/usr/bin/env bash
 function setupAtom() {
-
+    # Keep it all alphabetically (but grouped) for easier changes  
     # 1. Install packages
-    apm install docblockr
-    apm install pigments
-    apm install minimap
-    apm install color-picker
-    apm install merge-conflicts
-    apm install linter
-    apm install linter-eslint
-    apm install linter-php
-    apm install linter-csslint
-    apm install linter-less
-    apm install linter-sass-lint
-    apm install php-cs-fixer
     apm install atom-beautify
-    apm install react
+    apm install blade-snippets
+    apm install color-picker
+    apm install docblockr
     apm install imdone-atom
     apm install language-blade
-    apm install blade-snippets
+    apm install language-dotfiles
+    apm install linter
+    apm install linter-eslint
+    apm install linter-less
+    apm install linter-php
+    apm install linter-sass-lint
+    apm install merge-conflicts
+    apm install minimap
+    apm install php-cs-fixer
+    apm install pigments
+    apm install react
     apm install travis-ci-status
     apm install wordpress-api
 

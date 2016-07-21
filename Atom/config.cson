@@ -27,6 +27,7 @@
     invisibles: {}
     lineHeight: 1.6
     scrollPastEnd: true
+    showIndentGuide: true
     softWrap: true
     tabType: "soft"
   "exception-reporting":
@@ -57,7 +58,8 @@
   "linter-sass-lint":
     configFile: "/Users/LukasJuhas/.sass-lint.yml"
     noConfigDisable: true
-  "linter-scss-lint": {}
+  "linter-scss-lint":
+    disableWhenNoConfigFileInPath: true
   minimap: {}
   "php-cs-fixer":
     executablePath: "/usr/local/bin/php-cs-fixer"
