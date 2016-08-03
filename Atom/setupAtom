@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 function setupAtom() {
-    # Keep it all alphabetically (but grouped) for easier changes  
+    # Keep it all alphabetically (but grouped) for easier changes
     # 1. Install packages
     apm install atom-beautify
     apm install blade-snippets
@@ -23,9 +23,9 @@ function setupAtom() {
     apm install wordpress-api
 
     # 2. Install Theme/s and co.
-    apm install atom-material-ui
+    apm install spacegray-dark-ui
     apm install file-icons
-    apm install zero-dark-matrix-syntax
+    apm install oceanic-next
 
     # 3. update config and styles file
     cd ~/.atom

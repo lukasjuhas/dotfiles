@@ -14,8 +14,8 @@
     openEmptyEditorOnStart: false
     packagesWithKeymapsDisabled: []
     themes: [
-      "atom-material-ui"
-      "zero-dark-matrix-syntax"
+      "spacegray-dark-ui"
+      "oceanic-next"
     ]
   docblockr:
     extra_tags: [
@@ -23,7 +23,7 @@
       "@date {{date}}"
     ]
   editor:
-    fontSize: 13
+    fontSize: 12
     invisibles: {}
     lineHeight: 1.6
     scrollPastEnd: true
