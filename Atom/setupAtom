@@ -9,6 +9,7 @@ function setupAtom() {
     apm install imdone-atom
     apm install language-blade
     apm install language-dotfiles
+    apm install language-vue
     apm install linter
     apm install linter-eslint
     apm install linter-less

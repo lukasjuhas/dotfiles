@@ -17,143 +17,61 @@
 # If you are unfamiliar with CSON, you can read more about it here:
 # https://github.com/bevry/cson#what-is-cson
 
+# JS
+'.source.js':
+  'Between Function':
+    'prefix': 'between'
+    'body': '''
+      function between(x, min, max) {
+        return x >= min && x <= max;
+      }
+    '''
+
 # General
 
 '.scss.css':
   'SVG Background Image':
     'prefix': 'svg background'
-    'body': """
+    'body': '''
       background-repeat: no-repeat;
       background-position: center center;
       background-size: 10px 10px;
       background-image: url(images/lol.png);
       background-image: linear-gradient(transparent, transparent), url(images/lol.svg);
-    """
+    '''
+
+'.php':
+  'ACF Repeater':
+    'prefix': 'acfrepeater'
+    'body': '''
+      <?php if( have_rows('repeater_field_name') ): ?>
+          <?php while ( have_rows('repeater_field_name') ) : the_row(); ?>
+              <?php the_sub_field('sub_field_name'); ?>
+          <?php endwhile; ?>
+      <?php endif; ?>
+    '''
 
 # Barebones
 
-'.html.php.blade':
-  'Barebones Column':
-    'prefix': 'brbns column'
-    'body': """
-      <div class="col col--xs-12 col--sm-12 col--md-6 col--lg-6">
-      </div>
-    """
+'Barebones Column':
+  'prefix': 'brbnscol'
+  'body': '''
+    <div class="col col--xs-12 col--sm-12 col--md-6 col--lg-6">
+    </div>
+  '''
 
-'.html.php.blade':
-  'Barebones Column Offset':
-    'prefix': 'brbns offset column'
-    'body': """
-      <div class="col col--xs-12 col--sm-12 col--md-6 col--lg-6 col--xs-offset-0 col--sm-offset-0 col--md-offset-3 col--lg-offset-3">
-      </div>
-    """
+'Barebones Column Offset':
+  'prefix': 'brbnsoffsetcol'
+  'body': '''
+    <div class="col col--xs-12 col--sm-12 col--md-6 col--lg-6 col--xs-offset-0 col--sm-offset-0 col--md-offset-3 col--lg-offset-3">
+    </div>
+  '''
 
 # Wordpress
 
-'.text.html.php':
+'.text.php':
   'Link Manager':
     'prefix': 'linkmanager'
-    'body': """
+    'body': '''
       add_filter( 'pre_option_link_manager_enabled', '__return_true' );
-    """
-
-# Laravel Blade templates
-
-'.text.html.php.blade':
-  'Error Markup':
-    'prefix': 'error'
-    'body': """
-      @if (count($errors) > 0)
-          <div class="alert alert--danger">
-              <ul>
-                  @foreach ($errors->all() as $error)
-                      <li>{{ $error }}</li>
-                  @endforeach
-              </ul>
-          </div>
-      @endif
-    """
-
-  'Flash Markup':
-    'prefix': 'flash'
-    'body': """
-      @if (session('flash_message'))
-          <div class="container">
-              <div class="alert alert--{{ isset(session('flash_message')['status']) ? session('flash_message')['status'] : 'success' }}">
-                 {!! session('flash_message')['content'] !!}
-                 <a href="#" class="alert__dismiss">&times;</a>
-              </div>
-          </div>
-      @endif
-    """
-
-  'Login Form Markup':
-    'prefix': 'login'
-    'body': """
-      {!! Form::open(['url' => '/auth/login', 'class' => 'form form--auth form--auth--login']) !!}
-          <div class ="form__group">
-              {!! Form::label('email', 'Email', ['class' => 'form__label']) !!}
-              {!! Form::email('email', old('email'), ['class' => 'form__control']) !!}
-              {!! $errors->first('email') ? '<span class="form__error">' . $errors->first('email') . '</span>' : null !!}
-          </div>
-          <div class="form__group">
-              {!! Form::label('password', 'Password', ['class' => 'form__label']) !!}
-              {!! Form::password('password', null, ['class' => 'form__control']) !!}
-              {!! $errors->first('password') ? '<span class="form__error">' . $errors->first('password') . '</span>' : null !!}
-          </div>
-          <div class="form__group clearfix">
-              <div class="alignleft">
-                  {!! Form::checkbox('remember', null, null, ['id' => 'remember']) !!}
-                  {!! Form::label('remember', 'Remember Me', ['class' => '']) !!}
-              </div>
-              <a class="alignright" href="{{ url('/password/email') }}">Forgotten password?</a>
-          </div>
-          <div class="form__group">
-              <button type="submit" class="btn btn--block">Sign in</button>
-          </div>
-      {!! Form::close() !!}
-    """
-
-  'Password Form Markup':
-    'prefix': 'password'
-    'body': """
-      {!! Form::open(['url' => '/password/email', 'class' => 'form form--auth form--auth--email']) !!}
-          <div class ="form__group">
-              {!! Form::label('email', 'Email Address', ['class' => 'form__label']) !!}
-              {!! Form::email('email', old('email'), ['class' => 'form__control']) !!}
-              {!! $errors->first('email') ? '<span class="form__error">' . $errors->first('email') . '</span>' : null !!}
-          </div>
-          <div class="form__group">
-              <button type="submit" class="btn btn--block">Send Password Reset Link</button>
-          </div>
-      {!! Form::close() !!}
-    """
-
-  'Reset Form Markup':
-    'prefix': 'reset'
-    'body': """
-      {!! Form::open(['url' => '/password/reset', 'class' => 'form form--auth form--auth--email']) !!}
-          <input type="hidden" name="token" value="{{ $token }}">
-          <div class ="form__group">
-              {!! Form::label('email', 'Email', ['class' => 'form__label']) !!}
-              {!! Form::email('email', old('email'), ['class' => 'form__control']) !!}
-              {!! $errors->first('email') ? '<span class="form__error">' . $errors->first('email') . '</span>' : null !!}
-          </div>
-
-          <div class="form__group">
-              {!! Form::label('password', 'Password', ['class' => 'form__label']) !!}
-              {!! Form::password('password', null, ['class' => 'form__control']) !!}
-              {!! $errors->first('password') ? '<span class="form__error">' . $errors->first('password') . '</span>' : null !!}
-          </div>
-
-          <div class="form__group">
-              {!! Form::label('password_confirmation', 'Re-enter Password', ['class' => 'form__label']) !!}
-              {!! Form::password('password_confirmation', null, ['class' => 'form__control']) !!}
-              {!! $errors->first('password_confirmation') ? '<span class="form__error">' . $errors->first('password_confirmation') . '</span>' : null !!}
-          </div>
-
-          <div class="form__group">
-              <button type="submit" class="btn btn--block">Reset Password</button>
-          </div>
-      {!! Form::close() !!}
-    """
+    '''
