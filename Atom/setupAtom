@@ -5,6 +5,7 @@ function setupAtom() {
     apm install atom-beautify
     apm install blade-snippets
     apm install color-picker
+    apm install devdocs
     apm install docblockr
     apm install imdone-atom
     apm install language-blade
@@ -14,7 +15,7 @@ function setupAtom() {
     apm install linter-eslint
     apm install linter-less
     apm install linter-php
-    apm install linter-sass-lint
+    apm install linter-scss-lint
     apm install merge-conflicts
     apm install minimap
     apm install php-cs-fixer

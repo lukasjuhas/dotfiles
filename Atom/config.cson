@@ -1,27 +1,36 @@
 "*":
   "atom-beautify":
-    analytics: false
+    css:
+      indent_size: 2
+    general:
+      _analyticsUserId: "045e542b-d197-456f-abf7-7315a477809f"
+      analytics: false
+    scss:
+      indent_size: 2
   "autoclose-html":
     additionalGrammars: [
       "*"
     ]
   core:
+    automaticallyUpdate: false
     closeEmptyWindows: false
     disabledPackages: [
       "linter-csslint"
       "linter-sass-lint"
     ]
+    ignoredNames: [
+      ".hg"
+      ".DS_Store"
+      "Thumbs.db"
+    ]
     openEmptyEditorOnStart: false
     packagesWithKeymapsDisabled: []
+    telemetryConsent: "limited"
     themes: [
       "spacegray-dark-ui"
       "oceanic-next"
     ]
-  docblockr:
-    extra_tags: [
-      "@author Lukas Juhas"
-      "@date {{date}}"
-    ]
+  docblockr: {}
   editor:
     fontSize: 13
     invisibles: {}
@@ -67,7 +76,8 @@
   react: {}
   "travis-ci-status": {}
   "tree-view":
-    hideIgnoredNames: true
+    hideIgnoredNames: false
+    hideVcsIgnoredFiles: false
   welcome:
     showOnStartup: false
 ".blade.html.php.text":
