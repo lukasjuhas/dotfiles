@@ -5,7 +5,12 @@
     general:
       _analyticsUserId: "045e542b-d197-456f-abf7-7315a477809f"
       analytics: false
+    js:
+      disabled: true
+      indent_size: 2
     scss:
+      indent_size: 2
+    vue:
       indent_size: 2
   "autoclose-html":
     additionalGrammars: [
