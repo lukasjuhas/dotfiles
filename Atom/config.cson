@@ -36,11 +36,9 @@
       "oceanic-next"
     ]
   docblockr:
-    deep_indent: true
-    extra_tags: [
-      "@version ${1:[version]}"
-    ]
-    extra_tags_go_after: true
+    align_tags: "no"
+    param_description: false
+    return_description: false
   editor:
     fontSize: 13
     invisibles: {}
