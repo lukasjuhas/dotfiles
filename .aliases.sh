@@ -1,10 +1,14 @@
-# tells me my IP Address
-alias myip='curl ip.appspot.com'
+# Easier navigation: .., ..., ~ and - thanks @paulirish
+alias ..="cd .."
+alias cd..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias .....="cd ../../../.."
+alias ~="cd ~" # `cd` is probably faster to type though
+alias -- -="cd -"
 
-# Make directory and enter it
-function mkd() {
-    mkdir -p "$@" && cd "$@"
-}
+# tells me my IP Address
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 
 # visual git history
 alias gitlog="git log --graph --oneline --all --decorate"
@@ -13,6 +17,12 @@ alias gitlog="git log --graph --oneline --all --decorate"
 function oops() {
     git commit --amend -m "$@"
 }
+
+# git push
+alias push="git push"
+
+# Undo a `git push`
+alias undopush="git push -f origin HEAD^:master"
 
 # open up emoji cheat sheet in browser
 alias emojis="open http://www.emoji-cheat-sheet.com/"
@@ -72,3 +82,13 @@ alias update='sudo softwareupdate -i -a; brew update; brew upgrade --all; brew c
 
 # ¯\_(ツ)_/¯
 alias shrug='echo "¯\_(ツ)_/¯" | pbcopy && echo "¯\_(ツ)_/¯ copied to clipboard."'
+
+# Recursively delete `.DS_Store` files
+alias cleanup_dsstore="find . -name '*.DS_Store' -type f -ls -delete"
+
+alias diskspace_report="df -P -kHl"
+
+alias g="git"
+
+# File size
+alias fs="stat -f \"%z bytes\""
