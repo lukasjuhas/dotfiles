@@ -95,3 +95,6 @@ alias fs="stat -f \"%z bytes\""
 
 # Thanks to Taylor Otwell
 alias weather='curl -s wttr.in/london | sed -n "1,7p"'
+
+# sublime shortcut
+alias sub="sublime"
