@@ -1,0 +1,3 @@
+[
+  { "keys": ["alt+super+b"], "command": "phpcs_fix_this_file", "args": {"tool": "Fixer"}},
+]

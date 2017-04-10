@@ -1,0 +1,41 @@
+{
+	"bootstrapped": true,
+	"in_process_packages":
+	[
+	],
+	"installed_packages":
+	[
+		"A File Icon",
+		"AVA",
+		"Babel",
+		"Blade Snippets",
+		"BracketHighlighter",
+		"Color Highlighter",
+		"DevDocs",
+		"DocBlockr",
+		"DotENV",
+		"EditorConfig",
+		"Emmet",
+		"ESLint",
+		"ESLint-Formatter",
+		"Git",
+		"Git Conflict Resolver",
+		"HTML-CSS-JS Prettify",
+		"Laravel Blade Highlighter",
+		"Markdown Preview",
+		"Modific",
+		"Oceanic Next Color Scheme",
+		"Package Control",
+		"Phpcs",
+		"Pretty JSON",
+		"SCSS",
+		"SideBarEnhancements",
+		"SublimeLinter",
+		"SublimeLinter-contrib-stylelint",
+		"SublimeLinter-phpcs",
+		"Theme - Spacegray",
+		"Travis-CI",
+		"Vue Syntax Highlight",
+		"Vuejs Snippets"
+	]
+}

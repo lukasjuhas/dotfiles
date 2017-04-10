@@ -1,4 +1,8 @@
 {
+	"added_words":
+	[
+		"Laravel"
+	],
 	"bold_folder_labels": true,
 	"caret_style": "phase",
 	"color_scheme": "Packages/User/SublimeLinter/Oceanic Next (SL).tmTheme",
@@ -8,7 +12,6 @@
 	"draw_white_space": "selection",
 	"ensure_newline_at_eof_on_save": true,
 	"fade_fold_buttons": true,
-	"findreplace_small": true,
 	"file_exclude_patterns":
 	[
 		".DS_Store",
@@ -19,6 +22,7 @@
 		".Spotlight-V100",
 		".Trashes"
 	],
+	"findreplace_small": true,
 	"font_face": "Menlo",
 	"font_size": 13,
 	"highlight_line": true,
@@ -29,21 +33,21 @@
 		"Markdown Preview",
 		"Vintage"
 	],
+	"line_numbers": true,
 	"line_padding_bottom": 5,
 	"match_brackets": true,
 	"match_brackets_angle": true,
+	"phpunit-sublime-terminal": "iTerm",
 	"remember_open_files": false,
 	"rulers":
 	[
 		80
 	],
-	"added_words":
-  [
-      "Laravel"
-  ],
 	"scroll_past_end": true,
+	"show_definitions": false,
 	"show_encoding": true,
 	"show_line_endings": true,
+	"show_panel_on_build": false,
 	"spacegray_fileicons": true,
 	"spacegray_sidebar_tree_large": true,
 	"tab_size": 2,
@@ -51,9 +55,5 @@
 	"theme": "Spacegray.sublime-theme",
 	"translate_tabs_to_spaces": true,
 	"trim_trailing_white_space_on_save": true,
-	"word_wrap": false,
-	"line_numbers": true,
-	"phpunit-sublime-terminal": "iTerm",
-	"show_definitions": false,
-	"show_panel_on_build": false,
+	"word_wrap": false
 }
