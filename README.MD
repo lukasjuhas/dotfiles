@@ -9,7 +9,7 @@ dotfiles, configs I use on a day-to-day basis.
   * [Custom Styles](Atom/styles.less)
   * [Packages](Atom/packages.MD)
   * [Custom Snippets](Atom/#custom-snippets)
-  * [Custom Keymap] (Atom/#custom-keymap)
+  * [Custom Keymap](Atom/#custom-keymap)
   * [Themes](Atom/#themes)
 * [Terminal](#terminal)
 
