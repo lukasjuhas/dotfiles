@@ -23,8 +23,8 @@
 		".Trashes"
 	],
 	"findreplace_small": true,
-	"font_face": "Menlo",
-	"font_size": 13,
+	"font_face": "Operator Mono",
+	"font_size": 14,
 	"highlight_line": true,
 	"highlight_modified_tabs": true,
 	"hot_exit": false,
