@@ -98,3 +98,18 @@ alias weather='curl -s wttr.in/london | sed -n "1,7p"'
 
 # sublime shortcut
 alias sub="sublime"
+
+# Chrome. Hello headless Chrome.
+alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
+alias chrome-canary="/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary"
+alias chromium="/Applications/Chromium.app/Contents/MacOS/Chromium"
+
+# PDF e.g. pdf https://itsluk.as
+function pdf() {
+    chrome --headless --disable-gpu --print-to-pdf "$@"
+}
+
+# Print dom
+function pdom() {
+    chrome --headless --disable-gpu --dump-dom "$@"
+}
