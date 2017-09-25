@@ -2,20 +2,8 @@
 dotfiles, configs I use on a day-to-day basis.
 
 ### Index
-* [Sublime](#sublime)
-* [Atom](Atom/) (outdated, switched back to sublime)
-  * [Automated Installation](Atom/#automated-installation)
-  * [Config](Atom/config.cson)
-  * [Custom Styles](Atom/styles.less)
-  * [Packages](Atom/packages.MD)
-  * [Custom Snippets](Atom/#custom-snippets)
-  * [Custom Keymap](Atom/#custom-keymap)
-  * [Themes](Atom/#themes)
 * [Terminal](#terminal)
-
-### [Sublime](Sublime/)
-This folder is usually in my Dropbox folder and in sync across machines using symlink.
-`ln -s ~/Dropbox\ (Persoonal)/Apps/Sublime/Packages/User ~/Library/Application\ Support/Sublime\ Text\ 3/Installed\ Packages/User`
+* [VSCode](#terminal)
 
 ### Terminal
 * [iTerm2](http://iterm2.com/)
@@ -24,6 +12,11 @@ This folder is usually in my Dropbox folder and in sync across machines using sy
   * [com.googlecode.iterm2.plist](com.googlecode.iterm2.plist)
 * [Oh My ZSH!](http://ohmyz.sh/)
   * [.zshrc](.zshrc)
+
+### VSCode
+I have recently switched to Visual Studio Code.
+
+> Config TBC.
 
 ### Sensible macOS defaults
 
