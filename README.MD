@@ -1,35 +1,11 @@
-# dotfiles
+# Lukas' dotfiles
 dotfiles, configs I use on a day-to-day basis.
 
-### Index
-* [Terminal](#terminal)
-* [VSCode](#terminal)
+## Setup
+Read and run parts of `setup-a-new-machine.sh`
 
-### Terminal
-* [iTerm2](http://iterm2.com/)
-  * [Oceanic-Next.itermcolors](Oceanic-Next.itermcolors)
-  * [Prose Theme](prose.zsh-theme)
-  * [com.googlecode.iterm2.plist](com.googlecode.iterm2.plist)
-* [Oh My ZSH!](http://ohmyz.sh/)
-  * [.zshrc](.zshrc)
-
-### VSCode
-I have recently switched to Visual Studio Code.
-
-> Config TBC.
-
-### Sensible macOS defaults
-
-```bash
-./.macos
-```
-
-### Install Tools via Homebrew
-Run after installing Homebrew.
-
-```bash
-./.brew
-```
+## Goodies
+[`.aliases`](https://github.com/lukasjuhas/dotfiles/blob/master/.aliases) and [`.functions`](https://github.com/lukasjuhas/dotfiles/blob/master/.functions)
 
 ---
-Inspired and based mainly from [@una](https://github.com/una/dotfiles), [@paulirish](https://github.com/paulirish/dotfiles) and [@mathiasbynens](https://github.com/mathiasbynens/dotfiles/). Thank you!
+Inspired and based mainly from [@una](https://github.com/una/dotfiles), [@paulirish](https://github.com/paulirish/dotfiles) and [@mathiasbynens](https://github.com/mathiasbynens/dotfiles/). Big thank you y'all!
