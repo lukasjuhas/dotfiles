@@ -139,7 +139,9 @@ echo $BASH_VERSION # should be 4.x not the old 3.2.X
 # Later, confirm iterm settings aren't conflicting.
 
 
-# Install composer
+# Install composer - https://getcomposer.org/doc/00-intro.md#installation-linux-unix-osx
+# ..then install CS mainly used in vscode
+sudo composer global require "squizlabs/php_codesniffer=*"
 
 ###
 ##############################################################################################################
