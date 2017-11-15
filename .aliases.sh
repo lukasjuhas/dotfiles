@@ -113,3 +113,8 @@ function pdf() {
 function pdom() {
     chrome --headless --disable-gpu --dump-dom "$@"
 }
+
+# homestead
+function homestead() {
+    ( cd ~/Homestead && vagrant $* )
+}
