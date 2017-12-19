@@ -118,3 +118,9 @@ function pdom() {
 function homestead() {
     ( cd ~/Homestead && vagrant $* )
 }
+
+# npm check update
+alias npmcu="ncu"
+
+# npm update
+alias npmu="ncu -u"

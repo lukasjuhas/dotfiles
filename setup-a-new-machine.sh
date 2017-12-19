@@ -104,7 +104,10 @@ npm install -g git-recent
 npm install -g diff-so-fancy
 
 # trash as the safe `rm` alternative
-npm install --global trash-cli
+npm install -g trash-cli
+
+# https://www.npmjs.com/package/npm-check-updates
+npm install -g npm-check-updates
 
 #################################
 # VSCODE extension req.
