@@ -124,3 +124,11 @@ alias npmcu="ncu"
 
 # npm update
 alias npmu="ncu -u"
+
+# phing tests
+alias pt="vendor/bin/phing test"
+alias pcs="vendor/bin/phing commit-stage"
+function ptests() {
+    vendor/bin/phing commit-stage
+    vendor/bin/phing test
+}
