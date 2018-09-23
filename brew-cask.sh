@@ -55,6 +55,7 @@ brew cask install transmission
 brew cask install appcleaner
 brew cask install adobe-creative-cloud
 brew cask install homebrew/cask-drivers/logitech-options
+brew cask install android-sdk
 
 ### Other not found
 # Unsplash
