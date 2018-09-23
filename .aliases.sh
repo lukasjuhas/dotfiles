@@ -132,3 +132,6 @@ function ptests() {
     vendor/bin/phing commit-stage
     vendor/bin/phing test
 }
+
+# docker
+alias dphp="docker-compose exec app php"
