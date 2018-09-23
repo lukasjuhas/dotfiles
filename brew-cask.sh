@@ -19,10 +19,11 @@ brew cask install flux
 brew cask install skype
 brew cask install unrarx
 brew cask install slack
-brew cask install cloudapp
+brew cask install kap
 brew cask install arq
 brew cask install protonvpn
 brew cask install protonmail-bridge
+brew cask install authy
 
 # dev
 brew cask install iterm2
@@ -34,7 +35,8 @@ brew cask install postman
 brew cask install sequel-pro
 brew cask install transmit
 brew cask install docker
-brew cask install virtualbox
+brew cask install docker-compose
+brew cask install sketch
 
 # browsers
 brew cask install firefox
@@ -49,8 +51,15 @@ brew tap caskroom/fonts
 brew cask install font-fira-code
 brew cask install hazel
 brew cask install handbrake
+brew cask install transmission
+brew cask install appcleaner
+brew cask install adobe-creative-cloud
+brew cask install homebrew/cask-drivers/logitech-options
 
 ### Other not found
 # Unsplash
 # Microsfot Office
 # Bear
+# Littleipsum
+# Affinity Designer
+# Lightroom
