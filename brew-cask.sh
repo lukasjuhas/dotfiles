@@ -15,16 +15,14 @@ brew cask install spectacle
 brew cask install alfred
 brew cask install dropbox
 brew cask install 1password
-brew cask install rescuetime
 brew cask install flux
 brew cask install skype
 brew cask install unrarx
 brew cask install slack
-brew cask install little-snitch
 brew cask install cloudapp
-brew cask install tunnelblick
 brew cask install arq
-brew cask install cheatsheet
+brew cask install protonvpn
+brew cask install protonmail-bridge
 
 # dev
 brew cask install iterm2
@@ -39,27 +37,20 @@ brew cask install docker
 brew cask install virtualbox
 
 # browsers
-brew cask install google-chrome
 brew cask install firefox
 brew cask install firefoxnightly
-brew cask install torbrowser
+brew cask install google-chrome
 
 # less often
 brew cask install vlc
-brew cask install gpgtools
-brew cask install utorrent
-brew cask install handbrake
 brew cask install caffeine
-brew cask install duet
-brew cask install tunnelbear
-
 brew cask install spotify
-
 brew tap caskroom/fonts
 brew cask install font-fira-code
+brew cask install hazel
+brew cask install handbrake
 
 ### Other not found
-# HeliumLift4
+# Unsplash
 # Microsfot Office
-# Dr Cleaner?
 # Bear

@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/LukasJuhas/.oh-my-zsh
+export ZSH=/Users/lukasjuhas/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -53,7 +53,7 @@ plugins=(git)
 
 # User configuration
 
-export PATH="/Users/LukasJuhas/.composer/vendor/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="/Users/lukasjuhas/.composer/vendor/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export XDEBUG_CONFIG="idekey=VSCODE"
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -85,7 +85,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # My alliases
-source "/Users/LukasJuhas/.aliases.sh"
+source "/Users/lukasjuhas/.aliases.sh"
 
 # My Functions
-source "/Users/LukasJuhas/.functions.sh"
+source "/Users/lukasjuhas/.functions.sh"

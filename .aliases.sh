@@ -134,4 +134,6 @@ function ptests() {
 }
 
 # docker
+alias d='docker $*'
+alias d-c='docker-compose $*'
 alias dphp="docker-compose exec app php"
