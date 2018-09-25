@@ -137,3 +137,5 @@ function ptests() {
 alias d='docker $*'
 alias d-c='docker-compose $*'
 alias dphp="docker-compose exec app php"
+alias dcr="docker-compose run --rm snap-app_php-fpm_1"
+alias dcb="docker exec -it snap-app_php-fpm_1 bash"
