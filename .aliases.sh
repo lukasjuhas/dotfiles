@@ -93,11 +93,16 @@ alias g="git"
 # File size
 alias fs="stat -f \"%z bytes\""
 
-# Thanks Taylor Otwell!
-alias weather='curl -s wttr.in/london | sed -n "1,7p"'
-
-# sublime shortcut
-alias sub="sublime"
+# weather report
+function weather() {
+    # weather for given place
+    if [[ $@ ]] then
+        curl -s wttr.in/"$@" | sed -n "1,7p"
+    else # otherwise fallback to london
+        curl -s wttr.in/london | sed -n "1,7p"
+    fi
+    
+}
 
 # Chrome. Hello headless Chrome.
 alias chrome="/Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome"
