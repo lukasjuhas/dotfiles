@@ -144,3 +144,6 @@ alias d-c='docker-compose $*'
 alias dphp="docker-compose exec app php"
 alias dcr="docker-compose run --rm snap-app_php-fpm_1"
 alias dcb="docker exec -it snap-app_php-fpm_1 bash"
+
+# Tail (latest) log (file) in laravel project
+alias tl='tail -f `ls -1td ./storage/logs/*| /usr/bin/head -n1`'
