@@ -142,8 +142,12 @@ alias cdd="cd ~/Sites/Development"
 # Docker
 alias d="docker $*"
 alias dcc="docker-compose $*"
-alias dcr="docker-compose run --rm $@"
-alias deb="docker exec -it $@ bash"
+function dcr() {
+    docker-compose run --rm $1
+}
+function deb() {
+    docker exec -it $1 bash
+}
 
 # Tail (latest) log (file) in laravel project
 alias tl='tail -f `ls -1td ./storage/logs/*| /usr/bin/head -n1`'
