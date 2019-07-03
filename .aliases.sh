@@ -146,7 +146,7 @@ alias dcr="docker-compose run --rm $@"
 alias deb="docker exec -it $@ bash"
 
 # Tail (latest) log (file) in laravel project
-alias tl="tail -f `ls -1td ./storage/logs/*| /usr/bin/head -n1`"
+alias tl='tail -f `ls -1td ./storage/logs/*| /usr/bin/head -n1`'
 
 # Python
 alias python="python3"
