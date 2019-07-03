@@ -31,8 +31,9 @@ alias emojis="open http://www.emoji-cheat-sheet.com/"
 alias wtf="source ~/.zshrc"
 
 # open these directories from anywhere
-alias workspace="~/Workspace/"
-alias sites="~/Sites/"
+alias cdw="~/Workspace/"
+alias cds="~/Sites/"
+alias cdc="~/Code/"
 
 # create new laravel project using composer
 function laravel() {
@@ -89,6 +90,8 @@ alias cleanup_dsstore="find . -name '*.DS_Store' -type f -ls -delete"
 alias diskspace_report="df -P -kHl"
 
 alias g="git"
+alias gs="git status"
+alias gch="git checkout"
 
 # File size
 alias fs="stat -f \"%z bytes\""
@@ -119,11 +122,6 @@ function pdom() {
     chrome --headless --disable-gpu --dump-dom "$@"
 }
 
-# homestead
-function homestead() {
-    ( cd ~/Homestead && vagrant $* )
-}
-
 # npm check update
 alias npmcu="ncu"
 
@@ -138,12 +136,20 @@ function ptests() {
     vendor/bin/phing test
 }
 
-# docker
-alias d='docker $*'
-alias d-c='docker-compose $*'
-alias dphp="docker-compose exec app php"
-alias dcr="docker-compose run --rm snap-app_php-fpm_1"
-alias dcb="docker exec -it snap-app_php-fpm_1 bash"
+# Projects
+alias cdd="cd ~/Sites/Development"
+
+# Docker
+alias d="docker $*"
+alias dcc="docker-compose $*"
+alias dcr="docker-compose run --rm $@"
+alias deb="docker exec -it $@ bash"
 
 # Tail (latest) log (file) in laravel project
-alias tl='tail -f `ls -1td ./storage/logs/*| /usr/bin/head -n1`'
+alias tl="tail -f `ls -1td ./storage/logs/*| /usr/bin/head -n1`"
+
+# Python
+alias python="python3"
+
+# Postgress
+alias psql="psql -h localhost -Uadmin"
