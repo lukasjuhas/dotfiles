@@ -149,6 +149,20 @@ function deb() {
     docker exec -it $1 bash
 }
 
+# Heroku
+alias cl='heroku config -a snap-${PWD##*/}'
+alias cs='heroku config -a stagingsnap-${PWD##*/}'
+alias cst='heroku config -a testsnap-${PWD##*/}'
+alias gpf='git push heroku_live $(git symbolic-ref --short -q HEAD):master'
+alias gps='git push heroku_staging $(git symbolic-ref --short -q HEAD):master'
+alias gpst='git push heroku_test $(git symbolic-ref --short -q HEAD):master'
+alias t='heroku logs --tail --app snap-${PWD##*/}'
+alias ts='heroku logs --tail --app stagingsnap-${PWD##*/}'
+alias tst='heroku logs --tail --app testsnap-${PWD##*/}'
+alias lrestart='heroku ps:restart -asnap-${PWD##*/}'
+alias srestart='heroku ps:restart -astagingsnap-${PWD##*/}'
+alias trestart='heroku ps:restart -atestsnap-${PWD##*/}'
+
 # Tail (latest) log (file) in laravel project
 alias tl='tail -f `ls -1td ./storage/logs/*| /usr/bin/head -n1`'
 
