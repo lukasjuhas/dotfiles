@@ -37,6 +37,7 @@ brew cask install transmit
 brew cask install docker
 brew cask install docker-compose
 brew cask install sketch
+brew cask install minikube
 
 # browsers
 brew cask install firefox
