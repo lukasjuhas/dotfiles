@@ -20,15 +20,12 @@ brew cask install skype
 brew cask install unrarx
 brew cask install slack
 brew cask install kap
-brew cask install arq
 brew cask install protonvpn
 brew cask install protonmail-bridge
-brew cask install authy
 
 # dev
 brew cask install iterm2
 brew cask install visual-studio-code
-brew cask install sublime-text
 brew cask install imagealpha
 brew cask install imageoptim
 brew cask install postman
@@ -46,11 +43,9 @@ brew cask install google-chrome
 
 # less often
 brew cask install vlc
-brew cask install caffeine
 brew cask install spotify
 brew tap caskroom/fonts
 brew cask install font-fira-code
-brew cask install hazel
 brew cask install handbrake
 brew cask install transmission
 brew cask install appcleaner
