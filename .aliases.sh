@@ -92,6 +92,7 @@ alias diskspace_report="df -P -kHl"
 alias g="git"
 alias gs="git status"
 alias gch="git checkout"
+alias gpom="git push origin master"
 
 # File size
 alias fs="stat -f \"%z bytes\""
