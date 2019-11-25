@@ -111,3 +111,13 @@ camerausedby() {
 	usedby=$(lsof | grep -w "AppleCamera\|USBVDC\|iSight" | awk '{printf $2"\n"}' | xargs ps)
 	echo -e "Recent camera uses:\n$usedby"
 }
+
+# backup files from a docker volume into /tmp/backup.tar.gz
+# e.g. docker-volume-backup-compressed development_mysql_data
+function docker-volume-backup-compressed() {
+	docker run -v "$1:/volume" -v /tmp:/backup --rm loomchild/volume-backup backup "$1_volume_backup"
+}
+# restore files from /tmp/backup.tar.gz into a docker volume
+function docker-volume-restore-compressed() {
+	docker run -v $1:/volume -v /tmp:/backup --rm loomchild/volume-backup restore "$1_volume_backup"
+}
