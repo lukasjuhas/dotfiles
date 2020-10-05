@@ -4,11 +4,8 @@
 # to maintain cask ....
 #     brew update && brew upgrade brew-cask && brew cleanup && brew cask cleanup`
 
-
-# Install native apps
-
-brew install caskroom/cask/brew-cask
-# brew tap caskroom/versions
+brew install homebrew/cask
+brew tap homebrew/cask-versions
 
 # daily
 brew cask install spectacle
@@ -16,8 +13,6 @@ brew cask install alfred
 brew cask install dropbox
 brew cask install 1password
 brew cask install flux
-brew cask install skype
-brew cask install unrarx
 brew cask install slack
 brew cask install kap
 brew cask install protonvpn
@@ -31,32 +26,29 @@ brew cask install imageoptim
 brew cask install postman
 brew cask install sequel-pro
 brew cask install transmit
+
+# docker
 brew cask install docker
-brew cask install docker-compose
-brew cask install sketch
-brew cask install minikube
+brew install docker-compose
 
 # browsers
 brew cask install firefox
-brew cask install firefoxnightly
+brew cask install firefox-nightly
 brew cask install google-chrome
+brew cask install google-chrome-canary
+
+# fonts
+brew tap homebrew/cask-fonts
+brew cask install font-fira-code
 
 # less often
 brew cask install vlc
 brew cask install spotify
-brew tap caskroom/fonts
-brew cask install font-fira-code
-brew cask install handbrake
 brew cask install transmission
-brew cask install appcleaner
 brew cask install adobe-creative-cloud
 brew cask install homebrew/cask-drivers/logitech-options
-brew cask install android-sdk
 
 ### Other not found
 # Unsplash
-# Microsfot Office
-# Bear
+# Microsfot Office - lol
 # Littleipsum
-# Affinity Designer
-# Lightroom
