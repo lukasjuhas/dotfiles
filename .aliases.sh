@@ -102,8 +102,8 @@ function weather() {
     # weather for given place
     if [[ $@ ]] then
         curl -s wttr.in/"$@" | sed -n "1,7p"
-    else # otherwise fallback to london
-        curl -s wttr.in/london | sed -n "1,7p"
+    else # otherwise fallback to CPH
+        curl -s wttr.in/copenhagen | sed -n "1,7p"
     fi
     
 }
