@@ -63,6 +63,9 @@ brew install rename
 brew install tree
 brew install gh
 
+# heroku
+brew tap heroku/brew && brew install heroku
+
 # for vscode
 brew install homebrew/php/php-cs-fixer
 
