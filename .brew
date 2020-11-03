@@ -67,7 +67,7 @@ brew install gh
 brew tap heroku/brew && brew install heroku
 
 # for vscode
-brew install homebrew/php/php-cs-fixer
+brew install php-cs-fixer
 
 brew install terminal-notifier
 
