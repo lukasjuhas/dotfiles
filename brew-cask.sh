@@ -44,6 +44,7 @@ brew cask install font-fira-code
 # less often
 brew cask install vlc
 brew cask install spotify
+brew cask install sonos
 brew cask install transmission
 brew cask install adobe-creative-cloud
 brew cask install homebrew/cask-drivers/logitech-options
