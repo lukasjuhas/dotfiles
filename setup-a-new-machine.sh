@@ -114,6 +114,12 @@ npm install -g npm-check-updates
 
 npm install -g eslint
 
+# yeoman & generator code for vs code
+npm install -g yo generator-code
+
+# VSCode marketplace stuff
+npm install -g vsce
+
 
 # install better nanorc config
 # https://github.com/scopatz/nanorc
