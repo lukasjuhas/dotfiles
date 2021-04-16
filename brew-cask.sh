@@ -40,6 +40,7 @@ brew cask install google-chrome-canary
 # fonts
 brew tap homebrew/cask-fonts
 brew cask install font-fira-code
+brew install font-inconsolata-for-powerline
 
 # less often
 brew cask install vlc
