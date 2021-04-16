@@ -86,6 +86,17 @@ export PATH=$HOME/.homebrew/bin:$HOME/.homebrew/sbin:$PATH
 ### end of homebrew
 ##############################################################################################################
 
+# pyhton pip
+curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+python get-pip.py
+
+# powerline
+pip install --user powerline-status
+
+git clone https://github.com/powerline/fonts
+cd fonts
+./install.sh
+
 ##############################################################################################################
 ### install of common things
 ###
@@ -129,7 +140,7 @@ curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
 # disable itunes opening on media keys
 git clone https://github.com/thebitguru/play-button-itunes-patch ~/code/play-button-itunes-patch
 
- my magic photobooth symlink -> dropbox. I love it.
+# my magic photobooth symlink -> dropbox. I love it.
 # 	 + first move Photo Booth folder out of Pictures
 # 	 + then start Photo Booth. It'll ask where to put the library.
 # 	 + put it in Dropbox/public
