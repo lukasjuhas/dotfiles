@@ -88,7 +88,10 @@ brew install --cask postman
 brew install --cask sequel-pro
 brew install --cask transmit
 brew install --cask insomnia
+brew install ngrok
 mas install 405772121 # Littleipsum
+mas install 497799835 # Xcode
+brew install composer
 
 # docker
 brew install --cask docker
