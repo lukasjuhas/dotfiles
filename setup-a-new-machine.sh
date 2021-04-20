@@ -81,7 +81,6 @@ export PATH=$HOME/.homebrew/bin:$HOME/.homebrew/sbin:$PATH
 
 # install all the things
 ./brew.sh
-./brew-cask.sh
 
 ### end of homebrew
 ##############################################################################################################
