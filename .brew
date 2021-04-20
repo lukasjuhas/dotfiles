@@ -6,6 +6,9 @@ brew update
 # Upgrade any already-installed formulae
 brew upgrade
 
+# A simple command line interface for the Mac App Store.
+brew install mas
+
 # GNU core utilities (those that come with OS X are outdated)
 brew install coreutils
 brew install moreutils
@@ -60,7 +63,6 @@ brew install openssl
 brew install unrar
 brew install yarn
 
-# CASKS
 # daily
 brew install --cask spectacle
 brew install --cask alfred
@@ -73,6 +75,9 @@ brew install --cask protonvpn
 brew install --cask protonmail-bridge
 brew install --cask spotify
 brew install --cask sonos
+mas install 904280696 # Things 3
+mas install 937984704 # Amphetamine
+mas install 1284863847 # Unsplash Wallpapers
 
 # dev
 brew install --cask iterm2
@@ -83,6 +88,7 @@ brew install --cask postman
 brew install --cask sequel-pro
 brew install --cask transmit
 brew install --cask insomnia
+mas install 405772121 # Littleipsum
 
 # docker
 brew install --cask docker
@@ -100,22 +106,8 @@ brew install font-inconsolata-for-powerline
 
 # other
 brew install --cask vlc
-
-brew install --cask ticktick
 brew install --cask transmission
 brew install --cask adobe-creative-cloud
-brew install --cask homebrew/cask-drivers/logitech-options
 
 # Remove outdated versions from the cellar
 brew cleanup
-
-### Others
-YELLOW='\033[0;33m'
-BLUE='\033[0;34m'
-CYAN='\033[0;36m'
-NC='\033[0m' # No Color
-printf "\n${BLUE}🍺 Brew installs finished. There are a few things that need to be installed manually via app store:\n${NC}"
-printf "${CYAN}Unsplash${NC} - ${YELLOW}https://apps.apple.com/gb/app/unsplash-wallpapers/id1284863847?mt=12 \n${NC}"
-printf "${CYAN}Littleipsum${NC} - ${YELLOW}https://apps.apple.com/gb/app/littleipsum/id405772121?mt=12 \n${NC}"
-printf "${CYAN}Things${NC} - ${YELLOW}https://apps.apple.com/gb/app/things-3/id904280696?mt=12 \n${NC}"
-
