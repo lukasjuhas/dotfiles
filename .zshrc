@@ -52,7 +52,6 @@ ZSH_THEME="cobalt2"
 plugins=(git)
 
 # User configuration
-
 export PATH="/Users/lukasjuhas/.composer/vendor/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 export XDEBUG_CONFIG="idekey=VSCODE"
 # export MANPATH="/usr/local/man:$MANPATH"
@@ -74,6 +73,10 @@ source $ZSH/oh-my-zsh.sh
 
 # ssh
 # export SSH_KEY_PATH="~/.ssh/dsa_id"
+
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && . "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && . "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
