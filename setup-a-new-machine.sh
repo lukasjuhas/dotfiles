@@ -5,7 +5,6 @@ read -n 1
 
 ##############################################################################################################
 ###  backup old machine's key items
-# Most of these are backed up to Dropbox via Arq Backup but there are a few things we need to do manually...
 
 # wifi
 cp -Rp /Library/Preferences/SystemConfiguration/com.apple.airport.preferences.plist ~/migration/rootLibrary/Preferences/SystemConfiguration/
@@ -138,13 +137,6 @@ curl https://raw.githubusercontent.com/scopatz/nanorc/master/install.sh | sh
 # github.com/thebitguru/play-button-itunes-patch
 # disable itunes opening on media keys
 git clone https://github.com/thebitguru/play-button-itunes-patch ~/code/play-button-itunes-patch
-
-# my magic photobooth symlink -> dropbox. I love it.
-# 	 + first move Photo Booth folder out of Pictures
-# 	 + then start Photo Booth. It'll ask where to put the library.
-# 	 + put it in Dropbox/public
-# 	* Now… you can record photobooth videos quickly and they upload to dropbox DURING RECORDING
-# 	* then you grab public URL and send off your video message in a heartbeat.
 
 # for the c alias (syntax highlighted cat)
 sudo easy_install Pygments
