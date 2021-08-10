@@ -65,8 +65,8 @@ brew install unrar
 brew install yarn
 
 # daily
-brew install --cask spectacle
-brew install --cask alfred
+brew install --cask raycast
+brew install --cask rectangle
 brew install --cask dropbox
 brew install --cask 1password
 brew install --cask flux
