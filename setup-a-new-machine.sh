@@ -166,8 +166,14 @@ echo kern.maxvnodes=$((512*1024)) | sudo tee -a /etc/sysctl.conf
 git config status.showuntrackedfiles no
 git update-index --untracked-cache
 
+# Setup screenshots
+defaults write com.apple.screencapture /Users/lukas/Library/Mobile\ Documents/com\~apple\~CloudDocs/Vault/Screenshots
+
+# Symlink for screenshots
+ln -s /Users/lukas/Library/Mobile\ Documents/com\~apple\~CloudDocs/Vault/Screenshots /Users/lukas/Desktop
+
 # also this unrelated thing
-git config user.email "lukas@itsluk.as"
+git config user.email "lukasjuhas@pm.me"
 
 ##############################################################################################################
 ### remaining configuration
