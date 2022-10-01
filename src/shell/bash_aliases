@@ -1,0 +1,82 @@
+#!/bin/bash
+
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+alias cd..="cd .."
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+alias cp="cp -iv"
+#             │└─ list copied files
+#             └─ prompt before overwriting an existing file
+
+alias mkdir="mkdir -pv"
+#                   │└─ list created directories
+#                   └─ create intermediate directories
+
+alias mv="mv -iv"
+#             │└─ list moved files
+#             └─ prompt before overwriting an existing file
+
+alias rm="rm -rf --"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+alias :q="exit"
+alias c="clear"
+alias ch="history -c && > ~/.bash_history"
+alias d="cd ~/Desktop"
+alias e="vim --"
+alias g="git"
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias ll="ls -l"
+alias m="man"
+alias map="xargs -n1"
+alias n="npm"
+alias p="cd ~/projects"
+alias path='printf "%b\n" "${PATH//:/\\n}"'
+alias q="exit"
+alias t="tmux"
+alias y="yarn"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias emojis="open http://www.emoji-cheat-sheet.com/"
+alias wtf="source ~/.zshrc"
+alias whysoslow="top -o vsize"
+alias week='date +%V' # Get week number
+alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew upgrade --cask; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; composer global self-update; composer global update'
+alias shrug='echo "¯\_(ツ)_/¯" | pbcopy && echo "¯\_(ツ)_/¯ copied to clipboard."'
+alias cleanup_dsstore="find . -name '*.DS_Store' -type f -ls -delete"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+function laravel() {
+    composer create-project laravel/laravel "$@" --prefer-dist
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+function dc() {
+  docker "$@"
+}
+function dcc() {
+  docker-compose "$@"
+}
+function dcr() {
+    docker-compose run --rm "$1"
+}
+function deb() {
+    docker exec -it "$1" bash
+}
+
+# tail laravel log
+alias tl='tail -f `ls -1td ./storage/logs/*| /usr/bin/head -n1`'
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Load OS specific configs.
+
+. "$OS/bash_aliases"
