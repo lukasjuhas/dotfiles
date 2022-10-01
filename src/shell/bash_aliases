@@ -57,24 +57,19 @@ function laravel() {
     composer create-project laravel/laravel "$@" --prefer-dist
 }
 
-function weather() {
-    # weather for given place
-    if [[ $@ ]] then
-        curl -s wttr.in/"$@" | sed -n "1,7p"
-    else # otherwise fallback to CPH
-        curl -s wttr.in/copenhagen | sed -n "1,7p"
-    fi
-}
-
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-alias dc="docker $*"
-alias dcc="docker-compose $*"
+function dc() {
+  docker "$@"
+}
+function dcc() {
+  docker-compose "$@"
+}
 function dcr() {
-    docker-compose run --rm $1
+    docker-compose run --rm "$1"
 }
 function deb() {
-    docker exec -it $1 bash
+    docker exec -it "$1" bash
 }
 
 # tail laravel log
