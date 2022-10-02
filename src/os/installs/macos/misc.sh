@@ -6,7 +6,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-print_in_purple "\n   Miscellaneous (dev)\n\n"
+print_in_purple "\n   Miscellaneous\n\n"
 
 brew_install "MAS" "mas"
 
