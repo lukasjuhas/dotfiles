@@ -78,7 +78,7 @@ main() {
         update_composer
     fi
 
-    source $LOCAL_SHELL_CONFIG_FILE
+    source "$LOCAL_SHELL_CONFIG_FILE"
 
     install_laravel_valet
 
