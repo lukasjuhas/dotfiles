@@ -10,9 +10,7 @@ print_in_purple "\n   Miscellaneous (dev)\n\n"
 
 brew_install "MAS" "mas"
 
-brew_install "PHP" "php"
 brew_install "PHP CS" "php-cs-fixer"
-brew_install "Composer" "composer"
 brew install "Docker" "docker" "--cask"
 brew install "Docker Compose" "docker-compose"
 brew_install "Python" "python"
@@ -20,13 +18,6 @@ brew_install "Table Plus" "tableplus" "--cask"
 brew_install "Transmit" "transmit" "--cask"
 brew_install "Insomnia" "insomnia" "--cask"
 brew_install "Heroku" "heroku/brew/heroku"
-
-print_in_purple "\n   Laravel Valet\n\n"
-
-composer global require laravel/valet
-valet install
-
-print_in_purple "\n   Miscellaneous\n\n"
 
 brew_install "Raycast" "raycast" "--cask"
 brew_install "Rectangle" "rectangle" "--cask"
