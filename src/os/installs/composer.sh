@@ -4,7 +4,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
     && . "../utils.sh"
 
 declare -r LOCAL_SHELL_CONFIG_FILE="$HOME/.bash.local"
-declare -r COMPOSER_DIRECTORY="~/.composer/vendor/bin"
+declare -r COMPOSER_DIRECTORY="$HOME/.composer/vendor/bin"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -72,7 +72,7 @@ main() {
 
     install_php
 
-    if [ ! -d ~/.composer/vendor/bin ]; then
+    if [ ! -d "$COMPOSER_DIRECTORY" ]; then
         install_composer
     else
         update_composer
