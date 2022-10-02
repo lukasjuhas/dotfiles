@@ -4,7 +4,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
     && . "../utils.sh"
 
 declare -r LOCAL_SHELL_CONFIG_FILE="$HOME/.bash.local"
-declare -r COMPOSER_DIRECTORY="~/.composer/vendor/bin:$PATH"
+declare -r COMPOSER_DIRECTORY="~/.composer/vendor/bin"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -15,7 +15,9 @@ add_composer_configs() {
 
 # PHP Composer
 
-export PATH=\"$COMPOSER_DIRECTORY\"
+PATH=\"$COMPOSER_DIRECTORY:\$PATH\"
+
+export PATH
 
 "
 
@@ -70,11 +72,13 @@ main() {
 
     install_php
 
-    if [ ! -d "$COMPOSER_DIRECTORY" ]; then
+    if [ ! -d ~/.composer/vendor/bin ]; then
         install_composer
     else
         update_composer
     fi
+
+    source $LOCAL_SHELL_CONFIG_FILE
 
     install_laravel_valet
 
