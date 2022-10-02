@@ -44,7 +44,6 @@ alias y="yarn"
 
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias emojis="open http://www.emoji-cheat-sheet.com/"
-alias wtf="source ~/.zshrc"
 alias whysoslow="top -o vsize"
 alias week='date +%V' # Get week number
 alias update='sudo softwareupdate -i -a; brew update; brew upgrade; brew upgrade --cask; brew cleanup; npm install npm -g; npm update -g; sudo gem update --system; sudo gem update; composer global self-update; composer global update'
