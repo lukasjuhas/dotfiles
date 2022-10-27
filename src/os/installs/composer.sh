@@ -56,12 +56,29 @@ update_composer() {
 
 }
 
+install_and_start_mysql() {
+
+    execute \
+        "brew install mysql" \
+        "brew services start mysql"
+
+}
+
+install_and_start_redis() {
+
+    execute \
+        "brew install redis" \
+        "brew services start redis"
+
+}
+
 install_laravel_valet() {
     # Install laravel valet via composer
 
     execute \
         "composer global require laravel/valet" \
-        "valet install"
+        "valet install" \
+        "valet trust"
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -80,6 +97,8 @@ main() {
 
     source "$LOCAL_SHELL_CONFIG_FILE"
 
+    install_and_start_mysql
+    install_and_start_redis
     install_laravel_valet
 
 }
