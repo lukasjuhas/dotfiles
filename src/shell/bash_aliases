@@ -39,6 +39,8 @@ alias path='printf "%b\n" "${PATH//:/\\n}"'
 alias q="exit"
 alias t="tmux"
 alias y="yarn"
+alias pa="php artisan"
+alias co="composer"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
