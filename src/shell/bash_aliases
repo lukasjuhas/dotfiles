@@ -58,6 +58,8 @@ function laravel() {
     composer create-project laravel/laravel "$@" --prefer-dist
 }
 
+alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 function dc() {
