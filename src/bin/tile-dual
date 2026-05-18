@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Open 2 Terminal.app windows side-by-side, each cd'd to a starting dir.
+# Usage: tile-dual [dir]    (default: ~/projects)
+
+set -euo pipefail
+start_dir="${1:-$HOME/projects}"
+
+osascript <<EOF
+tell application "Finder"
+    set b to bounds of window of desktop
+end tell
+set L to item 1 of b
+set T to item 2 of b
+set R to item 3 of b
+set B to item 4 of b
+set midX to (L + R) / 2
+
+set cmd to "cd ${start_dir} && clear"
+
+tell application "Terminal"
+    activate
+    do script cmd
+    set bounds of front window to {L, T, midX, B}
+    do script cmd
+    set bounds of front window to {midX, T, R, B}
+end tell
+EOF
