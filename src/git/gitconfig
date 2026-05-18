@@ -220,6 +220,12 @@
     changed = yellow reverse
     untracked = red reverse
 
+[branch]
+
+    # Sort branches by most recent commit when listing.
+
+    sort = -committerdate
+
 [core]
 
     abbrev = 12
@@ -227,6 +233,27 @@
     autocrlf = input
     editor = vim
     excludesFile = ~/.gitignore
+
+    # Use `delta` (https://github.com/dandavison/delta) as the pager
+    # when installed via Homebrew; falls back gracefully otherwise.
+
+    pager = delta
+
+[credential "https://github.com"]
+
+    helper =
+    helper = !gh auth git-credential
+
+[credential "https://gist.github.com"]
+
+    helper =
+    helper = !gh auth git-credential
+
+[delta]
+
+    line-numbers = true
+    navigate = true
+    syntax-theme = Solarized (dark)
 
 [diff]
 
@@ -243,6 +270,12 @@
 
     textconv = hexdump --canonical --no-squeezing
 
+[fetch]
+
+    # Remove remote-tracking refs that no longer exist on the remote.
+
+    prune = true
+
 [help]
 
     # If a command is mistyped, make Git automatically
@@ -254,6 +287,10 @@
 
     defaultBranch = main
 
+[interactive]
+
+    diffFilter = delta --color-only
+
 [pretty]
 
     custom = "%C(magenta)%h%C(red)%d %C(yellow)%ar %C(green)%s %C(yellow)(%an)"
@@ -263,6 +300,11 @@
     #                     │        └─ decorations (branch, heads or tags)
     #                     └─ hash (abbreviated)
 
+[pull]
+
+    # Rebase local commits on top of fetched ones rather than merging.
+
+    rebase = true
 
 [push]
 
@@ -271,14 +313,19 @@
 
     followTags = true
 
+[rerere]
+
+    # Reuse recorded resolutions for repeated merge conflicts.
+    # https://git-scm.com/book/en/v2/Git-Tools-Rerere
+
+    enabled = true
+
 [user]
 
     # Do not guess the user's identity.
     # https://github.com/git/git/blob/90f7b16b3adc78d4bbabbd426fb69aa78c714f71/Documentation/config.txt#L2847-L2855
 
     useConfigOnly = true
-	email = lukasjuhas@pm.me
-	name = Lukas Juhas
 
     # [!] DO NOT store sensitive information such as the Git user
     # credentials (`name` / `email`), or things such as the `signingkey`

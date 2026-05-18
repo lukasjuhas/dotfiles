@@ -1,22 +1,24 @@
-# For more information about the configurations used
-# in this file, please see the GitHub Actions documentation.
+# Weekly link-check of every Markdown file in the repo.
 #
 # https://docs.github.com/en/actions
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-jobs:
-  ubuntu:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
-      - name: Check links from Markdown file
-        run: ./scripts/check_links/markdown.sh
 
 name: Check links
 
 on:
   schedule:
     - cron: "0 0 * * SAT"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  ubuntu:
+    name: Link check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Check links from Markdown files
+        run: ./scripts/check_links/markdown.sh

@@ -5,23 +5,21 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
     && . "./utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Order matters:
+#   1. Xcode CLT (prerequisite for almost everything)
+#   2. Homebrew itself
+#   3. Bash 5 (changes the user's login shell)
+#   4. Brewfile (formulae + casks + MAS apps)
+#   5. nvm + Node (separate because nvm is not on Homebrew)
+#   6. Global npm updates
+#   7. Composer / Laravel Valet wiring
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 ./xcode.sh
 ./homebrew.sh
 ./bash.sh
+./brewfile.sh
 
-./git.sh
 ./../nvm.sh
-./browsers.sh
-./../composer.sh
-./compression_tools.sh
-./gpg.sh
-./image_tools.sh
-./misc.sh
-./misc_tools.sh
 ./../npm.sh
-./tmux.sh
-./video_tools.sh
-./../vim.sh
-./vscode.sh
-./web_font_tools.sh
+./../composer.sh

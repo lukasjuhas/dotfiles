@@ -159,7 +159,11 @@ extract() {
 
 verify_os() {
 
-    declare -r MINIMUM_MACOS_VERSION="10.10"
+    # Apple Silicon + Tahoe (macOS 26) or newer. These dotfiles use
+    # WindowManager (Stage Manager), modern Safari, and other keys
+    # that don't exist on older macOS.
+
+    declare -r MINIMUM_MACOS_VERSION="26.0"
 
     local os_name="$(get_os)"
     local os_version="$(get_os_version)"
@@ -238,6 +242,10 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     ./create_symbolic_links.sh "$@"
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    ./link_vscode_configs.sh
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

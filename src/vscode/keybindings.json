@@ -1,0 +1,26 @@
+// Shared keybindings for VS Code and Cursor.
+[
+    {
+        "key": "alt+enter",
+        "command": "editor.action.showContextMenu",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "shift+f10",
+        "command": "-editor.action.showContextMenu",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+o",
+        "command": "extension.jumpy-line"
+    },
+    {
+        "key": "cmd+i",
+        "command": "composerMode.agent"
+    },
+    {
+        "key": "alt+cmd+s",
+        "command": "workbench.action.toggleUnifiedSidebarFromKeyboard",
+        "when": "!isAuxiliaryWindowFocusedContext"
+    }
+]
