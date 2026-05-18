@@ -1,0 +1,88 @@
+{
+  // Block CPE mandate (CPENG-706). Required security keys — do not remove.
+  "block.comment": "Three liveshare configs (liveshare.guestApprovalRequired, liveshare.anonymousGuestApproval, and liveshare.shareExternalFiles) are a mandatory security requirement which must be met (CPENG-706). Please leave them as-is.",
+  "liveshare.anonymousGuestApproval": "reject",
+  "liveshare.guestApprovalRequired": true,
+  "liveshare.shareExternalFiles": false,
+
+  // Editor
+
+  "editor.fontFamily": "FiraCode-Retina, Menlo, Monaco, monospace",
+  "editor.fontLigatures": true,
+  "editor.formatOnPaste": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.tabSize": 2,
+
+  // Workbench
+
+  "workbench.colorTheme": "Cobalt Next Dark",
+  "window.autoDetectColorScheme": false,
+  "window.systemColorTheme": "dark",
+  "extensions.ignoreRecommendations": true,
+  "vsicons.dontShowNewVersionMessage": true,
+
+  // Diff
+
+  "diffEditor.ignoreTrimWhitespace": false,
+
+  // Terminal
+
+  "terminal.integrated.fontFamily": "monospace",
+
+  // Git / GitHub
+
+  "git.autofetch": true,
+  "githubPullRequests.terminalLinksHandler": "github",
+
+  // TypeScript
+
+  "typescript.tsserver.maxTsServerMemory": 8144,
+  "typescript.tsserver.nodePath": "node",
+
+  // ESLint / Prettier
+
+  "eslint.nodePath": "/opt/homebrew/lib/node_modules",
+  "eslint.validate": ["glimmer-ts", "glimmer-js"],
+  "prettier.documentSelectors": ["**/*.gts", "**/*.gjs"],
+
+  // Per-language overrides
+
+  "[glimmer-js]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.foldingStrategy": "indentation"
+  },
+  "[glimmer-ts]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.foldingStrategy": "indentation"
+  },
+  "[dockercompose]": {
+    "editor.insertSpaces": true,
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced",
+    "editor.quickSuggestions": {
+      "other": true,
+      "comments": false,
+      "strings": true
+    },
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "[github-actions-workflow]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+
+  // CircleCI
+
+  "circleci.hostUrl": "",
+  "circleci.notifications.mute": true,
+
+  // Cursor-specific (silently ignored by VS Code)
+
+  "cursor.windowSwitcher.sidebarHoverCollapsed": true,
+
+  // VS Code-specific (silently ignored by Cursor)
+
+  "claudeCode.preferredLocation": "panel",
+  "react-native-tools.networkInspector.consoleLogsColorTheme": "Dark",
+  "settingsSync.ignoredExtensions": []
+}

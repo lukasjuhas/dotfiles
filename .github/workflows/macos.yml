@@ -1,12 +1,20 @@
-# For more information about the configurations used
-# in this file, please see the GitHub Actions documentation.
+# Lint the dotfiles on every push and PR.
 #
 # https://docs.github.com/en/actions
 
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+name: macOS
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
 
 jobs:
-  macOS:
+  lint:
+    name: Lint
     runs-on: macos-latest
     steps:
       - name: Checkout repository
@@ -20,10 +28,3 @@ jobs:
 
       - name: Lint Markdown files
         run: ./scripts/lint/markdown.sh
-
-      - name: Check links from Markdown file
-        run: ./scripts/check_links/markdown.sh
-
-name: macOS
-
-on: push

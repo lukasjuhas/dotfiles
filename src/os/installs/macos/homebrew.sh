@@ -6,22 +6,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-get_homebrew_git_config_file_path() {
-
-    local path=""
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    if path="$(brew --repository 2> /dev/null)/.git/config"; then
-        printf "%s" "$path"
-        return 0
-    else
-        print_error "Homebrew (get config file path)"
-        return 1
-    fi
-
-}
-
 install_homebrew() {
 
     if ! cmd_exists "brew"; then
@@ -34,53 +18,51 @@ install_homebrew() {
 
 }
 
-opt_out_of_analytics() {
+add_to_path() {
 
-    local path=""
+    declare -r LOCAL_SHELL_CONFIG_FILE="$HOME/.bash.local"
+    declare -r BREW_PREFIX="/opt/homebrew"
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+    # Apple Silicon only — Homebrew always installs to /opt/homebrew.
+    # Make sure it's on PATH in the local shell config (idempotent).
 
-    # Try to get the path of the `Homebrew` git config file.
-
-    path="$(get_homebrew_git_config_file_path)" \
-        || return 1
-
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-    # Opt-out of Homebrew's analytics.
-    # https://github.com/Homebrew/brew/blob/0c95c60511cc4d85d28f66b58d51d85f8186d941/share/doc/homebrew/Analytics.md#opting-out
-
-    if [ "$(git config --file="$path" --get homebrew.analyticsdisabled)" != "true" ]; then
-        git config --file="$path" --replace-all homebrew.analyticsdisabled true &> /dev/null
-        print_result $? "Homebrew (opt-out of analytics)"
+    if ! grep -F "$BREW_PREFIX/bin" < "$LOCAL_SHELL_CONFIG_FILE" &> /dev/null; then
+        execute \
+            "printf '\n# Homebrew\nexport PATH=\"%s/bin:\$PATH\"\n' '$BREW_PREFIX' >> $LOCAL_SHELL_CONFIG_FILE" \
+            "Homebrew (add $BREW_PREFIX/bin to PATH in $LOCAL_SHELL_CONFIG_FILE)"
     fi
-
 }
 
-opt_out_of_auto_update() {
+add_homebrew_env_configs() {
 
     declare -r LOCAL_SHELL_CONFIG_FILE="$HOME/.bash.local"
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    # If needed, add the necessary configs in the
-    # local shell configuration file.
+    # Modern Homebrew honors environment variables for both analytics
+    # opt-out and disabling auto-update. Write them once into the
+    # local shell config so they apply to every interactive shell.
+    #
+    # https://docs.brew.sh/Manpage#environment
+    # https://docs.brew.sh/Analytics#opting-out
 
-    if ! grep "HOMEBREW_NO_AUTO_UPDATE" < "$LOCAL_SHELL_CONFIG_FILE" &> /dev/null; then
+    if ! grep "HOMEBREW_NO_ANALYTICS" < "$LOCAL_SHELL_CONFIG_FILE" &> /dev/null; then
 
         declare -r CONFIGS="
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-# Configure Homebrew to not auto-update before running commands
-# such as: \`brew install\`, \`brew upgrade\`, and \`brew tap\`.
+# Homebrew: opt out of analytics and skip auto-update before
+# every brew command (run \`brew update\` manually instead).
 #
 # https://docs.brew.sh/Manpage#environment
 
+export HOMEBREW_NO_ANALYTICS=1
 export HOMEBREW_NO_AUTO_UPDATE=1
+export HOMEBREW_NO_ENV_HINTS=1
 "
         execute \
             "printf '%s' '$CONFIGS' >> $LOCAL_SHELL_CONFIG_FILE" \
-            "Homebrew (opt-out of auto-updating before running certain commands)"
+            "Homebrew (set HOMEBREW_NO_ANALYTICS / HOMEBREW_NO_AUTO_UPDATE in $LOCAL_SHELL_CONFIG_FILE)"
     fi
 }
 
@@ -91,12 +73,12 @@ main() {
     print_in_purple "\n   Homebrew\n\n"
 
     install_homebrew
-    opt_out_of_analytics
+    add_to_path
 
     brew_update
     brew_upgrade
 
-    opt_out_of_auto_update
+    add_homebrew_env_configs
 }
 
 main

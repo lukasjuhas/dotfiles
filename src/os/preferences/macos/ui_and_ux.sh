@@ -39,8 +39,8 @@ execute "defaults write com.apple.screencapture type -string 'png'" \
     "Save screenshots as PNGs"
 
 execute "defaults write com.apple.screensaver askForPassword -int 1 && \
-         defaults write com.apple.screensaver askForPasswordDelay -int 0"\
-    "Require password immediately after into sleep or screen saver mode"
+         defaults write com.apple.screensaver askForPasswordDelay -int 0" \
+    "Require password immediately after entering sleep or screen saver mode"
 
 execute "defaults write -g AppleFontSmoothing -int 2" \
     "Enable subpixel font rendering on non-Apple LCDs"
@@ -64,42 +64,52 @@ execute "defaults write -g NSUseAnimatedFocusRing -bool false" \
     "Disable the over-the-top focus ring animation"
 
 execute "defaults write -g NSWindowResizeTime -float 0.001" \
-    "Accelerated playback when adjusting the window size."
+    "Accelerate window resize playback"
 
 execute "defaults write -g PMPrintingExpandedStateForPrint -bool true" \
     "Expand print panel by default"
 
 execute "defaults write -g QLPanelAnimationDuration -float 0" \
-    "Disable opening a Quick Look window animations."
+    "Disable Quick Look window opening animations"
 
 execute "defaults write com.apple.systempreferences NSQuitAlwaysKeepsWindows -bool false" \
     "Disable resume system-wide"
 
-execute "sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string 'Laptop' && \
-         sudo scutil --set ComputerName 'laptop' && \
-         sudo scutil --set HostName 'laptop' && \
-         sudo scutil --set LocalHostName 'laptop'" \
-    "Set computer name"
-
-execute "sudo systemsetup -setrestartfreeze on" \
+execute "sudo systemsetup -setrestartfreeze on &> /dev/null" \
     "Restart automatically if the computer freezes"
 
-execute "sudo defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 0 && \
-         sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist && \
-         sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist" \
-    "Turn Bluetooth off"
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# macOS Sequoia / Tahoe (15+/26+) additions
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-execute "for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
-            sudo defaults write \"\${domain}\" dontAutoLoad -array \
-                '/System/Library/CoreServices/Menu Extras/TimeMachine.menu' \
-                '/System/Library/CoreServices/Menu Extras/Volume.menu'
-         done \
-            && sudo defaults write com.apple.systemuiserver menuExtras -array \
-                '/System/Library/CoreServices/Menu Extras/Bluetooth.menu' \
-                '/System/Library/CoreServices/Menu Extras/AirPort.menu' \
-                '/System/Library/CoreServices/Menu Extras/Battery.menu' \
-                '/System/Library/CoreServices/Menu Extras/Clock.menu'
-        " \
-    "Hide Time Machine and Volume icons from the menu bar"
+execute "defaults write com.apple.WindowManager GloballyEnabled -bool false" \
+    "Disable Stage Manager"
+
+execute "defaults write com.apple.WindowManager EnableStandardClickToShowDesktop -bool false" \
+    "Disable click-wallpaper-to-reveal-desktop"
+
+execute "defaults write com.apple.WindowManager StandardHideWidgets -bool true && \
+         defaults write com.apple.WindowManager StageManagerHideWidgets -bool true" \
+    "Hide desktop widgets"
+
+execute "defaults write com.apple.AppleMultitouchTrackpad ActuationStrength -int 0" \
+    "Set trackpad click to 'light'"
 
 killall "SystemUIServer" &> /dev/null
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Opt-in only (commented out) — uncomment if you want these behaviors
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+#
+# # Force computer name (annoying if you have multiple machines).
+# execute "sudo scutil --set ComputerName 'laptop' && \
+#          sudo scutil --set HostName 'laptop' && \
+#          sudo scutil --set LocalHostName 'laptop'" \
+#     "Set computer name"
+#
+# # Force Bluetooth off at every setup run (you almost never want this).
+# execute "sudo defaults write /Library/Preferences/com.apple.Bluetooth.plist ControllerPowerState 0 && \
+#          sudo launchctl unload /System/Library/LaunchDaemons/com.apple.blued.plist && \
+#          sudo launchctl load /System/Library/LaunchDaemons/com.apple.blued.plist" \
+#     "Turn Bluetooth off"
+

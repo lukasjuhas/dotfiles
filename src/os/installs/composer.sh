@@ -3,104 +3,61 @@
 cd "$(dirname "${BASH_SOURCE[0]}")" \
     && . "../utils.sh"
 
+# PHP, Composer, MySQL and Redis are installed declaratively via the
+# top-level `Brewfile`. This script only handles the Composer-PATH
+# wiring and Laravel Valet setup.
+
 declare -r LOCAL_SHELL_CONFIG_FILE="$HOME/.bash.local"
 declare -r COMPOSER_DIRECTORY="$HOME/.composer/vendor/bin"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-add_composer_configs() {
+add_composer_to_path() {
+
+    if grep -F "$COMPOSER_DIRECTORY" < "$LOCAL_SHELL_CONFIG_FILE" &> /dev/null; then
+        return
+    fi
 
     declare -r CONFIGS="
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # PHP Composer
 
-PATH=\"$COMPOSER_DIRECTORY:\$PATH\"
-
-export PATH
-
+export PATH=\"$COMPOSER_DIRECTORY:\$PATH\"
 "
 
-    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
     execute \
-        "printf '%s' '$CONFIGS' >> $LOCAL_SHELL_CONFIG_FILE \
-            && . $LOCAL_SHELL_CONFIG_FILE"
-
-}
-
-install_php() {
-
-    # Install `php` via brew
-
-    execute \
-        "brew install php"
-
-}
-
-install_composer() {
-
-    # Install `composer` via brew and add the necessary
-    # configs in the local shell config file.
-
-    execute \
-        "brew install composer" \
-    && add_composer_configs
-
-}
-
-update_composer() {
-
-    execute \
-        "brew upgrade composer"
-
-}
-
-install_and_start_mysql() {
-
-    execute \
-        "brew install mysql" \
-        "brew services start mysql"
-
-}
-
-install_and_start_redis() {
-
-    execute \
-        "brew install redis" \
-        "brew services start redis"
-
+        "printf '%s' '$CONFIGS' >> $LOCAL_SHELL_CONFIG_FILE" \
+        "Composer (add $COMPOSER_DIRECTORY to PATH in $LOCAL_SHELL_CONFIG_FILE)"
 }
 
 install_laravel_valet() {
-    # Install laravel valet via composer
+
+    if [ ! -d "$COMPOSER_DIRECTORY" ] || ! command -v composer &> /dev/null; then
+        print_warning "Composer is not installed yet — skipping Valet setup."
+        return
+    fi
+
+    if command -v valet &> /dev/null; then
+        print_success "Laravel Valet (already installed)"
+        return
+    fi
 
     execute \
-        "composer global require laravel/valet" \
-        "valet install" \
-        "valet trust"
+        "composer global require laravel/valet && \
+         valet install && \
+         valet trust" \
+        "Laravel Valet"
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
 
-    print_in_purple "\n   PHP, Composer & Laravel Valet\n\n"
+    print_in_purple "\n   PHP / Composer / Laravel Valet\n\n"
 
-    install_php
-
-    if [ ! -d "$COMPOSER_DIRECTORY" ]; then
-        install_composer
-    else
-        update_composer
-    fi
-
-    source "$LOCAL_SHELL_CONFIG_FILE"
-
-    install_and_start_mysql
-    install_and_start_redis
+    add_composer_to_path
     install_laravel_valet
-
 }
 
 main
