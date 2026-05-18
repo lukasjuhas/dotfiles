@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Open 4 Terminal.app windows in a 2x2 grid, each cd'd to a starting dir.
+# Usage: tile-quad [dir]    (default: ~/projects)
+
+set -euo pipefail
+start_dir="${1:-$HOME/projects}"
+
+osascript <<EOF
+tell application "Finder"
+    set b to bounds of window of desktop
+end tell
+set L to item 1 of b
+set T to item 2 of b
+set R to item 3 of b
+set B to item 4 of b
+set midX to (L + R) / 2
+set midY to (T + B) / 2
+
+set cmd to "cd ${start_dir} && clear"
+
+tell application "Terminal"
+    activate
+    do script cmd
+    set bounds of front window to {L, T, midX, midY}
+    do script cmd
+    set bounds of front window to {midX, T, R, midY}
+    do script cmd
+    set bounds of front window to {L, midY, midX, B}
+    do script cmd
+    set bounds of front window to {midX, midY, R, B}
+end tell
+EOF
