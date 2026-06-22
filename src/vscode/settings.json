@@ -43,8 +43,10 @@
   // ESLint / Prettier
 
   "eslint.nodePath": "/opt/homebrew/lib/node_modules",
-  "eslint.validate": ["glimmer-ts", "glimmer-js"],
-  "prettier.documentSelectors": ["**/*.gts", "**/*.gjs"],
+  "prettier.documentSelectors": [
+    "**/*.gts",
+    "**/*.gjs"
+  ],
 
   // Per-language overrides
 
