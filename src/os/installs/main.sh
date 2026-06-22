@@ -8,3 +8,6 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 print_in_purple "\n • Installs\n\n"
 
 "./$(get_os)/main.sh"
+
+# Clone personal repos (OS-agnostic; runs after brew + git are installed).
+./repos.sh
