@@ -10,6 +10,7 @@ declare -r PROJECTS_DIR="$HOME/projects"
 # machine may not have SSH/gh auth yet — set it up and re-run).
 declare -a REPOS=(
     "llm-wiki|lukasjuhas/llm-wiki"
+    "claude-skills|lukasjuhas/claude-skills"   # after clone, run claude-skills/install.sh
     # "consumer-web|POSH-Group/consumer-web"
     # add more here as needed
 )
