@@ -86,10 +86,16 @@ main() {
     print_in_purple "   Xcode\n\n"
 
     install_xcode_command_line_tools
-    install_xcode
-    set_xcode_developer_directory
-    agree_with_xcode_licence
-    create_simulator_links
+
+    # The full Xcode.app (iOS builds, Simulator) is only needed on
+    # laptops; the server only needs the Command Line Tools.
+
+    if is_laptop_profile "$(get_profile)"; then
+        install_xcode
+        set_xcode_developer_directory
+        agree_with_xcode_licence
+        create_simulator_links
+    fi
 }
 
 main

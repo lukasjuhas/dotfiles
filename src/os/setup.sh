@@ -136,6 +136,46 @@ download_utils() {
 
 }
 
+select_profile() {
+
+    local profile=""
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # `--profile <name>` or `--profile=<name>` wins, then a previously
+    # saved profile, then (interactive only) a prompt.
+
+    while [ $# -gt 0 ]; do
+        case $1 in
+            --profile) profile="$2"; shift ;;
+            --profile=*) profile="${1#*=}" ;;
+        esac
+        shift
+    done
+
+    if [ -z "$profile" ]; then
+        profile="$(cat "$DOTFILES_PROFILE_FILE" 2> /dev/null)"
+    fi
+
+    if [ -z "$profile" ] && ! $skipQuestions; then
+        while ! is_valid_profile "$profile"; do
+            ask "Which machine is this? (personal / work / server) "
+            profile="$(get_answer)"
+        done
+    fi
+
+    if ! is_valid_profile "$profile"; then
+        print_error "Unknown or missing machine profile '$profile' (use --profile personal|work|server)"
+        return 1
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    printf "%s\n" "$profile" > "$DOTFILES_PROFILE_FILE"
+    print_result $? "Machine profile: $profile ($DOTFILES_PROFILE_FILE)"
+
+}
+
 extract() {
 
     local archive="$1"
@@ -228,6 +268,13 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+    print_in_purple "\n • Machine profile\n\n"
+
+    select_profile "$@" \
+        || exit 1
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     ask_for_sudo
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -245,7 +292,9 @@ main() {
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-    ./link_vscode_configs.sh
+    if is_laptop_profile "$(get_profile)"; then
+        ./link_vscode_configs.sh
+    fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -254,6 +303,14 @@ main() {
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     ./installs/main.sh
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Laptops: key-based SSH to the home server (keys stay in ~/.ssh).
+
+    if is_laptop_profile "$(get_profile)"; then
+        ./set_server_ssh_key.sh
+    fi
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -269,7 +326,10 @@ main() {
 
         # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-        if ! $skipQuestions; then
+        # The server pulls over HTTPS and has no GitHub SSH key; the
+        # GitHub key setup in `update_content.sh` would wait forever.
+
+        if ! $skipQuestions && is_laptop_profile "$(get_profile)"; then
             ./update_content.sh
         fi
 

@@ -12,6 +12,7 @@ install_homebrew() {
         ask_for_sudo
         printf "\n" | /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)" &> /dev/null
         #  └─ simulate the ENTER keypress
+        ensure_brew_on_path
     fi
 
     print_result $? "Homebrew"

@@ -1,0 +1,76 @@
+#!/bin/bash
+
+# Mount the home server's `d2` drive (SMB) and open it in Finder.
+#
+#   d2               mount if needed, then open in Finder
+#   d2 --mount-only  mount if needed (used at login by a LaunchAgent,
+#                    see src/os/preferences/macos/personal.sh)
+#
+# The password comes from the Keychain: the first time, tick
+# "Remember this password" in the Finder prompt.
+
+declare -r HOST="erebor"
+declare -r SMB_USER="server"
+declare -r SHARE="d2"
+declare -r MOUNT_POINT="/Volumes/$SHARE"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+is_mounted() {
+    mount | grep -q " on $MOUNT_POINT (smbfs"
+}
+
+is_reachable() {
+    nc -z -G 2 "$HOST" 445 &> /dev/null
+}
+
+wait_for() {
+
+    local tries="$1"
+    shift
+
+    while [ "$tries" -gt 0 ]; do
+        "$@" && return 0
+        sleep 2
+        tries=$((tries - 1))
+    done
+
+    return 1
+
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+main() {
+
+    local mountOnly=false
+    local reachTries=1
+
+    if [ "$1" == "--mount-only" ]; then
+        mountOnly=true
+        reachTries=30   # at login the network can take a minute to come up
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if ! is_mounted; then
+
+        if ! wait_for "$reachTries" is_reachable; then
+            printf "d2: %s is not reachable (not home and Tailscale off?)\n" "$HOST" >&2
+            return 1
+        fi
+
+        open -g "smb://$SMB_USER@$HOST/$SHARE"
+
+        if ! wait_for 30 is_mounted; then
+            printf "d2: could not mount smb://%s@%s/%s\n" "$SMB_USER" "$HOST" "$SHARE" >&2
+            return 1
+        fi
+
+    fi
+
+    $mountOnly || open "$MOUNT_POINT"
+
+}
+
+main "$@"

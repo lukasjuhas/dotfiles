@@ -36,7 +36,19 @@ To set up the dotfiles run the appropriate snippet in the terminal:
 |:------|:--------|
 | macOS | `bash -c "$(curl -LsS https://raw.github.com/lukasjuhas/dotfiles/main/src/os/setup.sh)"` |
 
-That's it. ✨
+That's it. ✨ Nothing needs installing first: the script only needs the
+`bash` and `curl` that ship with macOS, and installs the Xcode Command
+Line Tools (git), Homebrew and then everything else, `just` included.
+
+Setup first asks __which machine this is__ (or pass
+`--profile personal|work|server`) and remembers the answer in
+`~/.dotfiles_profile`:
+
+| Profile    | Gets |
+|:-----------|:-----|
+| `personal` | [`Brewfile`][brewfile] + [`Brewfile.laptop`][brewfile laptop] + [`Brewfile.personal`][brewfile personal], filmscan, d2 mounted at login |
+| `work`     | [`Brewfile`][brewfile] + [`Brewfile.laptop`][brewfile laptop] |
+| `server`   | [`Brewfile`][brewfile] + [`Brewfile.server`][brewfile server], filmscan, [server settings][server prefs] |
 
 The setup process will:
 
@@ -50,26 +62,53 @@ The setup process will:
 * Prompt for __Full Disk Access__ if missing (required on modern
   macOS for many `defaults write` calls to take effect; see
   [`init.sh`][prefs init]).
-* Apply the [Brewfile][brewfile] (`brew bundle`) — installs every
-  formula, cask, and Mac App Store app in one declarative pass.
-  Browser variants, dead taps, and unused apps have all been pruned;
-  this list contains only what is actually used.
+* Apply this machine's Brewfile layers (`brew bundle`) — formulae,
+  casks, and Mac App Store apps in one declarative pass.
+* Laptops: install Node (nvm) and the latest Python (uv), and set up
+  key-based SSH to the home server ([`set_server_ssh_key.sh`][server key]).
+  Keys are generated on the machine and never stored in this repo.
+* Personal laptop + server: clone and install [filmscan] and the NegPy
+  version it pins.
+* Server: never sleep, restart after a power cut, Remote Login +
+  Screen Sharing on, SSH password login off (asks first, and only once
+  a key is authorised), and an SMB share for the `d2` drive.
 * Set custom [macOS][preferences macos] defaults (Finder, Dock,
   trackpad, keyboard, screenshots, Stage Manager off, etc.).
 
 Apple Silicon. Tahoe (macOS 26) or newer.
+
+Left to do by hand afterwards: sign in to Tailscale, the App Store,
+1Password and Adobe Creative Cloud (then install Lightroom from it),
+install the [NegPy app][negpy] (no cask), and drag `/Volumes/d2` into
+Finder's sidebar once (macOS 26 can't add sidebar items from a script;
+Finder reconnects on click afterwards).
+
+### Home server
+
+On a rebuilt server: sign in as the server user, then
+
+```bash
+git clone https://github.com/lukasjuhas/dotfiles.git ~/projects/dotfiles
+cd ~/projects/dotfiles && ./src/os/setup.sh --profile server
+```
+
+Re-run any time with `just setup-server`. From each laptop,
+`just server-key` makes sure key login to the server works.
 
 What's inside
 -------------
 
 ```text
 .
-├── Brewfile                                 ← every formula, cask, MAS app (declarative)
+├── Brewfile                                 ← base: every machine
+├── Brewfile.laptop                          ← personal + work laptops
+├── Brewfile.personal                        ← personal laptop only
+├── Brewfile.server                          ← home server only
 ├── justfile                                 ← shortcut recipes (see below)
 ├── renovate.json                            ← dependency updates
 ├── scripts/                                 ← lint + link-check (CI)
 └── src/
-    ├── bin/                                 ← personal scripts (tile-dual, tile-quad, …)
+    ├── bin/                                 ← personal scripts (d2, tile-dual, tile-quad, …)
     ├── git/                                 ← gitconfig, gitignore, gitattributes
     ├── shell/                               ← bash_aliases, bash_exports, bash_prompt, …
     ├── tmux/                                ← tmux.conf
@@ -79,19 +118,24 @@ What's inside
         ├── setup.sh                         ← entry point
         ├── create_symbolic_links.sh         ← bash/git/tmux/vim symlinks
         ├── link_vscode_configs.sh           ← VS Code + Cursor symlinks
+        ├── set_server_ssh_key.sh            ← laptops: key-based SSH to the server
         ├── installs/
-        │   ├── composer.sh                  ← Laravel Valet wiring
+        │   ├── filmscan.sh                  ← filmscan + pinned NegPy (uv)
         │   ├── npm.sh                       ← global npm updates
         │   ├── nvm.sh                       ← Node Version Manager (not on Homebrew)
+        │   ├── python.sh                    ← latest Python via uv
+        │   ├── repos.sh                     ← clone personal repos
         │   └── macos/
         │       ├── bash.sh                  ← chsh to Homebrew bash
-        │       ├── brewfile.sh              ← apply the root Brewfile
+        │       ├── brewfile.sh              ← profile → Brewfile layers
         │       ├── homebrew.sh              ← install brew, wire /opt/homebrew into PATH
-        │       └── xcode.sh                 ← Xcode CLT + licence accept
+        │       └── xcode.sh                 ← Xcode CLT (+ full Xcode on laptops)
         └── preferences/macos/
             ├── init.sh                      ← Full Disk Access check
             ├── dock.sh / finder.sh / …
-            └── ui_and_ux.sh                 ← Stage Manager off, .DS_Store control, …
+            ├── ui_and_ux.sh                 ← Stage Manager off, .DS_Store control, …
+            ├── personal.sh                  ← mount d2 at login
+            └── server.sh                    ← 24/7 power, SSH, keys only, d2 share
 ```
 
 Customize
@@ -166,11 +210,12 @@ recipes:
 
 ```bash
 just                # list recipes
-just setup          # full one-shot setup
+just setup work     # full one-shot setup (profile remembered afterwards)
+just setup-server   # same as `just setup server`
+just server-key     # laptops: make sure key SSH to the server works
 just install        # only run installers (Homebrew, casks, CLI)
-just bundle         # apply the Brewfile (formulae + casks + MAS)
-just bundle-check   # what's missing vs. the Brewfile?
-just bundle-dump    # rewrite the Brewfile from currently-installed packages
+just bundle         # apply this machine's Brewfile layers
+just bundle-check   # what's missing vs. this machine's Brewfiles?
 just prefs          # only apply macOS defaults
 just link           # (re)create the bash/git/tmux/vim symlinks
 just link-editors   # (re)symlink VS Code + Cursor configs
@@ -179,10 +224,22 @@ just lint           # shellcheck + markdownlint
 just check          # lint + broken-link check
 ```
 
-The [Brewfile][brewfile] is the single source of truth for everything
+The Brewfiles are the single source of truth for everything
 installable via Homebrew (formulae, casks) and `mas` (Mac App Store).
-To add a tool: edit the Brewfile, then `just bundle`. To audit drift
+To add a tool, put it in the layer for the machines that need it
+(`Brewfile` for all of them), then `just bundle`. To audit drift
 between this repo and your machine: `just bundle-check`.
+
+Python versions are managed by [uv] (the nvm equivalent):
+
+```bash
+uv python install 3.12   # add another version
+uv python pin 3.12       # write .python-version for a project
+uv python list           # installed / available versions
+```
+
+Home server shortcuts: `erebor-ssh` (SSH), `erebor` (Screen Sharing),
+`d2` (mount the d2 drive and open it in Finder).
 
 Editor configs (VS Code + Cursor)
 ---------------------------------
@@ -239,6 +296,14 @@ Inspired by and based on [@alrra/dotfiles][alrra]. Thanks!
 <!-- Link labels: -->
 [alrra]: https://github.com/alrra/dotfiles
 [brewfile]: Brewfile
+[brewfile laptop]: Brewfile.laptop
+[brewfile personal]: Brewfile.personal
+[brewfile server]: Brewfile.server
+[filmscan]: https://github.com/lukasjuhas/filmscan
+[negpy]: https://github.com/marcinz606/NegPy
+[server key]: src/os/set_server_ssh_key.sh
+[server prefs]: src/os/preferences/macos/server.sh
+[uv]: https://docs.astral.sh/uv/
 [ci badge macos]: https://github.com/lukasjuhas/dotfiles/workflows/macOS/badge.svg
 [ci link macos]: https://github.com/lukasjuhas/dotfiles/actions?query=workflow%3AmacOS
 [direnv]: https://direnv.net/

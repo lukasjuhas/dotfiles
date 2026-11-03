@@ -1,6 +1,7 @@
 #!/bin/bash
 
-cd "$(dirname "${BASH_SOURCE[0]}")"
+cd "$(dirname "${BASH_SOURCE[0]}")" \
+    && . "../../utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -20,3 +21,10 @@ cd "$(dirname "${BASH_SOURCE[0]}")"
 ./textedit.sh
 ./trackpad.sh
 ./ui_and_ux.sh
+
+# Machine-specific preferences.
+
+case "$(get_profile)" in
+    personal) ./personal.sh ;;
+    server)   ./server.sh ;;
+esac

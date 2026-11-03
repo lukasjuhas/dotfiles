@@ -42,8 +42,6 @@ alias q="exit"
 alias t="tmux"
 alias y="yarn"
 alias pn="pnpm"
-alias pa="php artisan"
-alias co="composer"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -59,19 +57,6 @@ alias update='sudo softwareupdate --install --all \
                 && pnpm update -g'
 alias shrug='printf "%s" "¯\_(ツ)_/¯" | pbcopy && echo "¯\_(ツ)_/¯ copied to clipboard."'
 alias cleanup_dsstore="find . -name '*.DS_Store' -type f -ls -delete"
-
-# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
-# PHP / Laravel
-
-function laravel() {
-    composer create-project laravel/laravel "$@" --prefer-dist
-}
-
-alias sail='[ -f sail ] && sh sail || sh vendor/bin/sail'
-
-# Tail latest Laravel log
-alias tl='tail -f `ls -1td ./storage/logs/*| /usr/bin/head -n1`'
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 

@@ -11,3 +11,8 @@ print_in_purple "\n • Installs\n\n"
 
 # Clone personal repos (OS-agnostic; runs after brew + git are installed).
 ./repos.sh
+
+# filmscan photo workflow: personal laptop + server only.
+case "$(get_profile)" in
+    personal|server) ./filmscan.sh ;;
+esac

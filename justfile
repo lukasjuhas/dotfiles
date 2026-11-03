@@ -11,9 +11,16 @@ DOTFILES := justfile_directory()
 default:
     @just --list
 
-# Run the full setup (installs apps, symlinks dotfiles, applies macOS prefs).
-setup:
-    bash {{DOTFILES}}/src/os/setup.sh
+# Full setup: `just setup personal|work|server` (remembered in ~/.dotfiles_profile).
+setup profile="":
+    bash {{DOTFILES}}/src/os/setup.sh {{ if profile != "" { "--profile " + profile } else { "" } }}
+
+# Set up (or re-run on) the home server.
+setup-server: (setup "server")
+
+# Set up key-based SSH from this laptop to the home server.
+server-key:
+    bash {{DOTFILES}}/src/os/set_server_ssh_key.sh
 
 # (Re)create the standard symlinks (bash, git, tmux, vim).
 link:
@@ -27,18 +34,13 @@ link-editors:
 install:
     bash {{DOTFILES}}/src/os/installs/main.sh
 
-# Apply only the Brewfile (formulae + casks + MAS apps).
+# Apply this machine's Brewfile layers (formulae + casks + MAS apps).
 bundle:
-    brew bundle --no-lock --file={{DOTFILES}}/Brewfile
+    bash {{DOTFILES}}/src/os/installs/macos/brewfile.sh
 
-# Show what's installed vs. what the Brewfile expects.
+# Show what's missing from this machine's Brewfile layers.
 bundle-check:
-    brew bundle check --verbose --file={{DOTFILES}}/Brewfile
-
-# Regenerate the Brewfile from currently-installed packages.
-# Use with care — overwrites the committed Brewfile.
-bundle-dump:
-    brew bundle dump --file={{DOTFILES}}/Brewfile --force
+    bash {{DOTFILES}}/src/os/installs/macos/brewfile.sh --check
 
 # Apply macOS defaults.
 prefs:

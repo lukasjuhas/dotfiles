@@ -59,3 +59,10 @@ alias u="sudo softwareupdate --install --all \
             && brew update \
             && brew upgrade \
             && brew cleanup"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Home server: SSH, Screen Sharing, and its d2 drive (`src/bin/d2`).
+
+alias erebor-ssh="ssh server@erebor"
+alias erebor="open vnc://server@erebor"
