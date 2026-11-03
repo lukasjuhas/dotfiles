@@ -20,7 +20,7 @@ brewfiles_for_profile() {
 
     case "$1" in
         personal) printf "%s\n" Brewfile Brewfile.laptop Brewfile.personal ;;
-        work)     printf "%s\n" Brewfile Brewfile.laptop ;;
+        work)     printf "%s\n" Brewfile Brewfile.laptop Brewfile.work ;;
         server)   printf "%s\n" Brewfile Brewfile.server ;;
         *)        return 1 ;;
     esac

@@ -47,7 +47,7 @@ Setup first asks __which machine this is__ (or pass
 | Profile    | Gets |
 |:-----------|:-----|
 | `personal` | [`Brewfile`][brewfile] + [`Brewfile.laptop`][brewfile laptop] + [`Brewfile.personal`][brewfile personal], filmscan, d2 mounted at login |
-| `work`     | [`Brewfile`][brewfile] + [`Brewfile.laptop`][brewfile laptop] |
+| `work`     | [`Brewfile`][brewfile] + [`Brewfile.laptop`][brewfile laptop] + [`Brewfile.work`][brewfile work] |
 | `server`   | [`Brewfile`][brewfile] + [`Brewfile.server`][brewfile server], filmscan, [server settings][server prefs] |
 
 The setup process will:
@@ -110,6 +110,7 @@ What's inside
 ├── Brewfile.laptop                          ← personal + work laptops
 ├── Brewfile.personal                        ← personal laptop only
 ├── Brewfile.server                          ← home server only
+├── Brewfile.work                            ← work laptop only
 ├── justfile                                 ← shortcut recipes (see below)
 ├── renovate.json                            ← dependency updates
 ├── scripts/                                 ← lint + link-check (CI)
@@ -305,6 +306,7 @@ Inspired by and based on [@alrra/dotfiles][alrra]. Thanks!
 [brewfile laptop]: Brewfile.laptop
 [brewfile personal]: Brewfile.personal
 [brewfile server]: Brewfile.server
+[brewfile work]: Brewfile.work
 [filmscan]: https://github.com/lukasjuhas/filmscan
 [negpy]: https://github.com/marcinz606/NegPy
 [server key]: src/os/set_server_ssh_key.sh
