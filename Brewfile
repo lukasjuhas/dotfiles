@@ -3,7 +3,7 @@
 # Each machine applies this file plus its own layer:
 #
 #   personal → Brewfile + Brewfile.laptop + Brewfile.personal
-#   work     → Brewfile + Brewfile.laptop
+#   work     → Brewfile + Brewfile.laptop + Brewfile.work
 #   server   → Brewfile + Brewfile.server
 #
 # The mapping lives in `src/os/installs/macos/brewfile.sh`; the machine

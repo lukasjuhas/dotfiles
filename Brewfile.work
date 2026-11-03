@@ -1,0 +1,40 @@
+# Work-laptop layer (on top of `Brewfile` + `Brewfile.laptop`).
+# Never installed on the personal laptop. See `Brewfile` for the layers.
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Dev & infrastructure
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+brew "act"                 # run GitHub Actions locally
+brew "actionlint"
+brew "mongodb-atlas-cli"   # `atlas`
+brew "ollama"              # local models for the pa login agents
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Mobile (React Native / Expo)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+cask "android-studio"
+cask "android-commandlinetools"
+cask "android-platform-tools"
+cask "expo-orbit"
+cask "zulu@17"             # JDK for Android builds
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# AI assistants
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+cask "conductor"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Meetings
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+cask "granola"
+cask "zoom"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Mac App Store apps
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+mas "Keynote", id: 409183694
