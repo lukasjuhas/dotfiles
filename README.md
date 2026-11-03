@@ -84,9 +84,9 @@ Left to do by hand afterwards: sign in to Tailscale, the App Store,
 1Password and Adobe Creative Cloud (then install Lightroom from it),
 install the [NegPy app][negpy] (no cask), keep "Share across devices"
 off in System Settings → Focus (so Do Not Disturb stays on the Mac),
-turn on the Safari extensions in Safari → Settings → Extensions, and drag `/Volumes/d2` into
-Finder's sidebar once (macOS 26 can't add sidebar items from a script;
-Finder reconnects on click afterwards).
+turn on the Safari extensions in Safari → Settings → Extensions,
+and drag `/Volumes/d2` into Finder's sidebar once (macOS 26 can't add
+sidebar items from a script; Finder reconnects on click afterwards).
 
 ### Home server
 
