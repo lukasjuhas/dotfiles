@@ -11,6 +11,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # through a Shortcuts shortcut ("Turn Do Not Disturb on until turned
 # off"). The repo holds only the unsigned recipe; each Mac signs and
 # imports its own copy, which needs one click on "Add Shortcut".
+# Signing needs iCloud; without it, the script asks for the shortcut
+# to be made by hand instead.
 #
 # Keep "Share across devices" off (System Settings → Focus) so this
 # doesn't spread to other devices on the same Apple ID.
@@ -35,24 +37,35 @@ shortcut_id() {
 
 import_shortcut() {
 
+    local signError=""
     local tmpDir=""
     local tries=150
 
     tmpDir="$(mktemp -d)"
 
-    if ! plutil -convert binary1 -o "$tmpDir/recipe.wflow" "$SHORTCUT_RECIPE" \
-        || ! shortcuts sign --mode anyone \
-            --input "$tmpDir/recipe.wflow" \
-            --output "$tmpDir/$SHORTCUT_NAME.shortcut" &> /dev/null; then
-        print_error "Do Not Disturb (could not sign the shortcut)"
+    if ! plutil -convert binary1 -o "$tmpDir/recipe.wflow" "$SHORTCUT_RECIPE"; then
+        print_error "Do Not Disturb (could not read $SHORTCUT_RECIPE)"
         rm -rf "$tmpDir"
         return 1
     fi
 
-    open "$tmpDir/$SHORTCUT_NAME.shortcut"
-    print_in_yellow "   Click \"Add Shortcut\" in the Shortcuts window…\n"
+    # Signing needs iCloud. Without it (e.g. a managed Apple ID on a
+    # work Mac) the shortcut has to be made by hand; only the name has
+    # to match.
 
-    # Wait up to 5 minutes for the click.
+    if signError="$(shortcuts sign --mode anyone \
+            --input "$tmpDir/recipe.wflow" \
+            --output "$tmpDir/$SHORTCUT_NAME.shortcut" 2>&1)"; then
+        open "$tmpDir/$SHORTCUT_NAME.shortcut"
+        print_in_yellow "   Click \"Add Shortcut\" in the Shortcuts window…\n"
+    else
+        print_warning "Could not sign the shortcut: ${signError#Error: }"
+        print_in_yellow "   Make it by hand: Shortcuts → + → \"Set Focus\" → turn Do Not Disturb\n"
+        print_in_yellow "   on until turned off, and name it \"$SHORTCUT_NAME\"…\n"
+        open -a "Shortcuts"
+    fi
+
+    # Wait up to 5 minutes for the click (or the hand-made shortcut).
     while ! has_shortcut && [ "$tries" -gt 0 ]; do
         sleep 2
         tries=$((tries - 1))
