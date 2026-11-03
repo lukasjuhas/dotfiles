@@ -42,7 +42,6 @@ brew "tflint"
 # Databases
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-brew "mysql", restart_service: :changed
 brew "redis", restart_service: :changed
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -150,7 +149,6 @@ cask "font-fira-code"
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 mas "Things 3",    id: 904280696
-mas "LittleIpsum", id: 405772121
 mas "Numbers",     id: 409203825
 mas "Pages",       id: 409201541
 mas "Amphetamine", id: 937984704

@@ -12,6 +12,12 @@ brew "libgphoto2"
 brew "sane-backends"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Databases
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+brew "mysql", restart_service: :changed
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 # Files & torrents
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
