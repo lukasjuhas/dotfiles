@@ -69,6 +69,9 @@ The setup process will:
   Keys are generated on the machine and never stored in this repo.
 * Personal laptop + server: clone and install [filmscan] and the NegPy
   version it pins.
+* Every machine: Do Not Disturb on, and back on at every login, via a
+  Shortcuts shortcut built from [`src/shortcuts`][shortcuts] (macOS has
+  no other way to script it). Click __Add Shortcut__ once when asked.
 * Server: never sleep, restart after a power cut, Remote Login +
   Screen Sharing on, SSH password login off (asks first, and only once
   a key is authorised), and an SMB share for the `d2` drive.
@@ -79,7 +82,9 @@ Apple Silicon. Tahoe (macOS 26) or newer.
 
 Left to do by hand afterwards: sign in to Tailscale, the App Store,
 1Password and Adobe Creative Cloud (then install Lightroom from it),
-install the [NegPy app][negpy] (no cask), and drag `/Volumes/d2` into
+install the [NegPy app][negpy] (no cask), keep "Share across devices"
+off in System Settings → Focus (so Do Not Disturb stays on the Mac),
+turn on the Safari extensions in Safari → Settings → Extensions, and drag `/Volumes/d2` into
 Finder's sidebar once (macOS 26 can't add sidebar items from a script;
 Finder reconnects on click afterwards).
 
@@ -303,6 +308,7 @@ Inspired by and based on [@alrra/dotfiles][alrra]. Thanks!
 [negpy]: https://github.com/marcinz606/NegPy
 [server key]: src/os/set_server_ssh_key.sh
 [server prefs]: src/os/preferences/macos/server.sh
+[shortcuts]: src/shortcuts
 [uv]: https://docs.astral.sh/uv/
 [ci badge macos]: https://github.com/lukasjuhas/dotfiles/workflows/macOS/badge.svg
 [ci link macos]: https://github.com/lukasjuhas/dotfiles/actions?query=workflow%3AmacOS

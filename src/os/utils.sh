@@ -201,6 +201,50 @@ ensure_brew_on_path() {
 
 }
 
+# Install (or refresh) a per-user LaunchAgent that runs once at login,
+# and load it now. Usage: install_login_agent <label> <program> [args…]
+# launchd doesn't expand `~`, so pass absolute paths.
+
+install_login_agent() {
+
+    local -r label="$1"
+    shift
+    local -r plist="$HOME/Library/LaunchAgents/$label.plist"
+    local arg=""
+    local args=""
+
+    for arg in "$@"; do
+        args+="        <string>$arg</string>"$'\n'
+    done
+
+    mkdir -p "$(dirname "$plist")"
+
+    cat > "$plist" << PLIST_EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>$label</string>
+    <key>ProgramArguments</key>
+    <array>
+$args    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardErrorPath</key>
+    <string>$HOME/Library/Logs/$label.log</string>
+</dict>
+</plist>
+PLIST_EOF
+
+    plutil -lint -s "$plist" \
+        || return 1
+
+    launchctl bootout "gui/$(id -u)/$label" &> /dev/null
+    launchctl bootstrap "gui/$(id -u)" "$plist"
+
+}
+
 is_git_repository() {
     git rev-parse &> /dev/null
 }

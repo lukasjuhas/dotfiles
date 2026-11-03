@@ -9,6 +9,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 ./app_store.sh
 ./chrome.sh
+./do_not_disturb.sh
 ./dock.sh
 ./finder.sh
 ./firefox.sh
