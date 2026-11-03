@@ -5,6 +5,48 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# Pinned Dock apps per machine profile. Finder and the Bin are always
+# there, and running apps still show up next to these.
+
+dock_apps_for_profile() {
+
+    case "$1" in
+        personal)
+            printf "%s\n" \
+                "/System/Applications/Mail.app" \
+                "/Applications/Firefox.app"
+            ;;
+        work)
+            printf "%s\n" \
+                "/Applications/Google Chrome.app"
+            ;;
+        server)
+            printf "%s\n" \
+                "/System/Applications/Apps.app" \
+                "/Applications/Safari.app" \
+                "/System/Applications/System Settings.app" \
+                "/System/Applications/Utilities/Terminal.app"
+            ;;
+    esac
+
+}
+
+add_dock_app() {
+
+    if [ ! -d "$1" ]; then
+        print_warning "Dock: $1 (not installed, skipped)"
+        return 0
+    fi
+
+    execute \
+        "defaults write com.apple.dock persistent-apps -array-add \
+            '<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>file://${1// /%20}/</string><key>_CFURLStringType</key><integer>15</integer></dict></dict></dict>'" \
+        "Dock: $(basename "$1" .app)"
+
+}
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 print_in_purple "\n   Dock\n\n"
 
 execute "defaults write com.apple.dock autohide -bool true" \
@@ -37,6 +79,10 @@ execute "defaults write com.apple.dock mru-spaces -bool false" \
 execute "defaults write com.apple.dock persistent-apps -array && \
          defaults write com.apple.dock persistent-others -array " \
     "Wipe all app icons"
+
+while read -r app; do
+    add_dock_app "$app"
+done < <(dock_apps_for_profile "$(get_profile)")
 
 execute "defaults write com.apple.dock show-process-indicators -bool true" \
     "Show indicator lights for open applications"
