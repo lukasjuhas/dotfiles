@@ -11,6 +11,7 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 declare -r SSHD_DROP_IN="/etc/ssh/sshd_config.d/010-dotfiles.conf"
 declare -r SHARE_NAME="d2"
 declare -r SHARE_PATH="/Volumes/d2"
+declare -r BACKUP_PATH="/Volumes/Backup-A"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -104,6 +105,63 @@ share_d2() {
 
 }
 
+time_machine() {
+
+    # Back up d2 (and the system) to Backup-A with Time Machine: hourly,
+    # versioned, and still encrypted (the volume keeps its FileVault
+    # encryption; it's not erased).
+
+    if [ ! -d "$BACKUP_PATH" ] || [ ! -d "$SHARE_PATH" ]; then
+        print_warning "Time Machine (skipped — $BACKUP_PATH and $SHARE_PATH must both be mounted)"
+        return 0
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    if tmutil destinationinfo 2> /dev/null | grep -q -E "^Mount Point[[:space:]]*:[[:space:]]*$BACKUP_PATH$"; then
+        print_success "Time Machine destination ($BACKUP_PATH)"
+    else
+
+        local device=""
+        device="$(diskutil info "$BACKUP_PATH" | awk -F': *' '/Device Identifier/ { print $2 }')"
+
+        ask_for_confirmation "Use $BACKUP_PATH ($device) as the Time Machine disk? Its encryption stays; existing files aren't deleted."
+        if ! answer_is_yes; then
+            print_warning "Time Machine (skipped)"
+            return 0
+        fi
+
+        execute \
+            "sudo diskutil apfs changeVolumeRole '$device' T \
+                && sudo tmutil setdestination '$BACKUP_PATH'" \
+            "Time Machine destination ($BACKUP_PATH)" \
+            || return 1
+
+    fi
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Time Machine skips external drives unless told otherwise.
+
+    if tmutil isexcluded "$SHARE_PATH" 2> /dev/null | grep -q "\[Excluded\]"; then
+        execute \
+            "sudo tmutil removeexclusion -v '$SHARE_PATH'" \
+            "Time Machine: include $SHARE_PATH"
+    else
+        print_success "Time Machine: include $SHARE_PATH"
+    fi
+
+    execute \
+        "sudo tmutil enable" \
+        "Time Machine: automatic backups on"
+
+    # Kick off the first backup now instead of waiting for the hour.
+
+    tmutil latestbackup &> /dev/null \
+        || execute "tmutil startbackup --auto" "Time Machine: first backup started"
+
+}
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
@@ -116,6 +174,7 @@ main() {
     enable_remote_access
     ssh_keys_only
     share_d2
+    time_machine
 
 }
 
