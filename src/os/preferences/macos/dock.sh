@@ -18,7 +18,8 @@ dock_apps_for_profile() {
             ;;
         work)
             printf "%s\n" \
-                "/Applications/Google Chrome.app"
+                "/Applications/Google Chrome.app" \
+                "/Applications/Slack.app"
             ;;
         server)
             printf "%s\n" \
