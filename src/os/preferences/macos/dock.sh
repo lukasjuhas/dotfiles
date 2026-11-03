@@ -49,8 +49,15 @@ add_dock_app() {
 
 print_in_purple "\n   Dock\n\n"
 
-execute "defaults write com.apple.dock autohide -bool true" \
-    "Automatically hide/show the Dock"
+# Laptops auto-hide the Dock; the server keeps it visible.
+
+if is_laptop_profile "$(get_profile)"; then
+    execute "defaults write com.apple.dock autohide -bool true" \
+        "Automatically hide/show the Dock"
+else
+    execute "defaults write com.apple.dock autohide -bool false" \
+        "Always show the Dock"
+fi
 
 execute "defaults write com.apple.dock autohide-delay -float 0" \
     "Disable the hide Dock delay"
