@@ -156,6 +156,95 @@ get_os_version() {
 
 }
 
+# Machine profile: which Brewfile layers and setup steps apply.
+# Chosen once by `setup.sh` and stored in `~/.dotfiles_profile`.
+
+DOTFILES_PROFILE_FILE="$HOME/.dotfiles_profile"
+
+get_profile() {
+
+    local profile=""
+
+    profile="$(cat "$DOTFILES_PROFILE_FILE" 2> /dev/null)"
+
+    if is_valid_profile "$profile"; then
+        printf "%s" "$profile"
+        return 0
+    fi
+
+    print_error "No machine profile set ($DOTFILES_PROFILE_FILE). Run: just setup <personal|work|server>" 1>&2
+    return 1
+
+}
+
+is_laptop_profile() {
+    [ "$1" == "personal" ] || [ "$1" == "work" ]
+}
+
+is_valid_profile() {
+    [ "$1" == "personal" ] || [ "$1" == "work" ] || [ "$1" == "server" ]
+}
+
+# Put Homebrew (Apple Silicon: /opt/homebrew) on PATH for the current
+# process. On a fresh Mac it isn't there until a new shell reads
+# ~/.bash.local, but setup needs `brew` right after installing it.
+
+ensure_brew_on_path() {
+
+    case ":$PATH:" in
+        *":/opt/homebrew/bin:"*) ;;
+        *) [ -x "/opt/homebrew/bin/brew" ] \
+               && export PATH="/opt/homebrew/bin:/opt/homebrew/sbin:$PATH" ;;
+    esac
+
+    return 0
+
+}
+
+# Install (or refresh) a per-user LaunchAgent that runs once at login,
+# and load it now. Usage: install_login_agent <label> <program> [args…]
+# launchd doesn't expand `~`, so pass absolute paths.
+
+install_login_agent() {
+
+    local -r label="$1"
+    shift
+    local -r plist="$HOME/Library/LaunchAgents/$label.plist"
+    local arg=""
+    local args=""
+
+    for arg in "$@"; do
+        args+="        <string>$arg</string>"$'\n'
+    done
+
+    mkdir -p "$(dirname "$plist")"
+
+    cat > "$plist" << PLIST_EOF
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>$label</string>
+    <key>ProgramArguments</key>
+    <array>
+$args    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardErrorPath</key>
+    <string>$HOME/Library/Logs/$label.log</string>
+</dict>
+</plist>
+PLIST_EOF
+
+    plutil -lint -s "$plist" \
+        || return 1
+
+    launchctl bootout "gui/$(id -u)/$label" &> /dev/null
+    launchctl bootstrap "gui/$(id -u)" "$plist"
+
+}
+
 is_git_repository() {
     git rev-parse &> /dev/null
 }
@@ -271,12 +360,12 @@ set_trap() {
 
 skip_questions() {
 
-     while :; do
-        case $1 in
+    local arg=""
+
+    for arg in "$@"; do
+        case $arg in
             -y|--yes) return 0;;
-                   *) break;;
         esac
-        shift 1
     done
 
     return 1
@@ -353,3 +442,10 @@ show_spinner() {
     done
 
 }
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+# Every setup script sources this file, so each one sees Homebrew once
+# it's installed.
+
+ensure_brew_on_path

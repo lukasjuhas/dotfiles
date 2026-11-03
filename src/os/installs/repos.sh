@@ -53,6 +53,15 @@ main() {
 
     mkdir -p "$PROJECTS_DIR"
 
+    local profile=""
+    profile="$(get_profile)" \
+        || return 1
+
+    # Photo workflow repos: personal laptop + server only.
+    if [ "$profile" == "personal" ] || [ "$profile" == "server" ]; then
+        REPOS+=("filmscan|lukasjuhas/filmscan")
+    fi
+
     local repo
     for repo in "${REPOS[@]}"; do
         clone_repo "$repo"

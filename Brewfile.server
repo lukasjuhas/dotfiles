@@ -1,0 +1,42 @@
+# Home-server layer (on top of `Brewfile`). Headless Mac mini: photo
+# storage, Immich in containers, backups. See `Brewfile` for the layers.
+#
+# Not here on purpose: mysql/redis (background services), docker-desktop
+# (OrbStack instead), protonvpn (would fight Tailscale), 1password (no
+# personal vault on the server), Amphetamine (pmset keeps it awake — see
+# `src/os/preferences/macos/server.sh`), editors, browsers, chat apps.
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Server tooling
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+brew "rsync"           # backups
+brew "smartmontools"   # drive health checks (smartctl)
+cask "orbstack"        # Docker runtime (instead of docker-desktop)
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Photos
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+cask "adobe-creative-cloud"   # install Lightroom from the CC app
+
+# Camera tethering & scanner libraries (filmscan workflow).
+brew "libgphoto2"
+brew "sane-backends"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Apps
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+cask "obsidian"
+cask "transmission"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Mac App Store: Safari extensions (turn them on in Safari → Settings →
+# Extensions; the App Store must be signed in for `mas`)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+brew "mas"
+
+mas "Wipr",               id: 1662217862
+mas "uBlock Origin Lite", id: 6745342698

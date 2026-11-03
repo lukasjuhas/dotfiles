@@ -1,0 +1,62 @@
+# Personal-laptop layer (on top of `Brewfile` + `Brewfile.laptop`).
+# Never installed on the work laptop. See `Brewfile` for the layers.
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Photo & design
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+cask "adobe-creative-cloud"   # install Lightroom / Photoshop from the CC app
+cask "figma"
+cask "imageoptim"
+
+# Camera tethering & scanner libraries (filmscan workflow).
+brew "libgphoto2"
+brew "sane-backends"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Files & torrents
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+brew "transmission-cli"
+cask "transmission"
+cask "transmit"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Browsers
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+cask "tor-browser"
+cask "vivaldi"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Privacy
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+cask "protonvpn"
+cask "proton-mail-bridge"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Media
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+cask "freetube"
+cask "sonos"
+cask "vlc"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Office & peripherals
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+cask "libreoffice"
+cask "logitech-options"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Mac App Store apps
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+mas "Amphetamine",          id: 937984704
+mas "Wipr",                 id: 1662217862
+mas "uBlock Origin Lite",   id: 6745342698
+mas "1Password for Safari", id: 1569813296
+mas "UnTrap",               id: 1637438059
+mas "SocialFocus",          id: 1661093205

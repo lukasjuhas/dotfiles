@@ -121,6 +121,16 @@ esac
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
+# User-level binaries: `uv tool install` (e.g. filmscan),
+# `uv python install --default`, and the Claude Code CLI.
+
+case ":$PATH:" in
+    *":$HOME/.local/bin:"*) ;;
+    *) export PATH="$HOME/.local/bin:$PATH" ;;
+esac
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 # Shell integrations for modern CLI tools (loaded only if installed).
 
 if command -v zoxide &> /dev/null; then

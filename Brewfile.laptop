@@ -1,0 +1,151 @@
+# Laptop layer: personal AND work laptops (on top of `Brewfile`).
+# See `Brewfile` for how the layers combine.
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Shell & terminal
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+brew "zellij"
+brew "mole"      # https://github.com/tw93/Mole — Mac cleanup
+brew "shellcheck"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Security & signing
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+brew "gnupg"
+brew "pinentry-mac"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Languages, runtimes & package managers
+# (Node via nvm, Python via uv — see `src/os/installs/`.)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+brew "bun"
+brew "cocoapods"
+brew "pipx"
+brew "pnpm"
+brew "ruff"
+brew "watchman"
+brew "yarn"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Containers, cloud & infrastructure
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+brew "awscli"
+brew "docker-compose"
+brew "terraform"
+brew "tflint"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Databases
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+brew "mysql", restart_service: :changed
+brew "redis", restart_service: :changed
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Media tooling
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+brew "ffmpeg"
+brew "imagemagick"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Compression & web font tools
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+brew "brotli"
+brew "zopfli"
+tap "bramstein/webfonttools"
+brew "bramstein/webfonttools/sfnt2woff"
+brew "bramstein/webfonttools/sfnt2woff-zopfli"
+brew "bramstein/webfonttools/woff2"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Mac App Store CLI
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+brew "mas"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Editors & dev tooling (casks)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+cask "cursor"
+cask "visual-studio-code"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Browsers
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+cask "google-chrome"
+cask "firefox"
+cask "firefox@nightly"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Containers & databases (UI)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+cask "docker-desktop"
+cask "tableplus"
+cask "mongodb-compass"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# AI assistants
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+cask "claude"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Notes & knowledge
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+cask "obsidian"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Productivity & menubar
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+cask "rectangle"
+cask "jordanbaird-ice"   # the only menu bar manager (no Bartender/Dozer)
+cask "meetingbar"
+cask "linear-linear"
+cask "kap"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Utilities
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+cask "the-unarchiver"
+cask "1password"
+cask "flux-app"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Communication
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+cask "slack"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Music
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+cask "spotify"
+cask "tidal"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Fonts
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+cask "font-fira-code"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Mac App Store apps
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+mas "Things 3",    id: 904280696
+mas "LittleIpsum", id: 405772121
+mas "Numbers",     id: 409203825
+mas "Pages",       id: 409201541
