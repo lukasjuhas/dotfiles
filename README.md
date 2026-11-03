@@ -74,7 +74,8 @@ The setup process will:
   no other way to script it). Click __Add Shortcut__ once when asked.
 * Server: never sleep, restart after a power cut, Remote Login +
   Screen Sharing on, SSH password login off (asks first, and only once
-  a key is authorised), and an SMB share for the `d2` drive.
+  a key is authorised), an SMB share for the `d2` drive, and Time
+  Machine backing up `d2` to `Backup-A` (hourly, versioned, encrypted).
 * Set custom [macOS][preferences macos] defaults (Finder, Dock,
   trackpad, keyboard, screenshots, Stage Manager off, etc.).
 
