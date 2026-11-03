@@ -6,8 +6,6 @@
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 cask "adobe-creative-cloud"   # install Lightroom / Photoshop from the CC app
-cask "figma"
-cask "imageoptim"
 
 # Camera tethering & scanner libraries (filmscan workflow).
 brew "libgphoto2"
@@ -54,7 +52,6 @@ cask "logitech-options"
 # Mac App Store apps
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-mas "Amphetamine",          id: 937984704
 mas "Wipr",                 id: 1662217862
 mas "uBlock Origin Lite",   id: 6745342698
 mas "1Password for Safari", id: 1569813296
