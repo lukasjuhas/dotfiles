@@ -72,6 +72,9 @@ The setup process will:
 * Every machine: Do Not Disturb on, and back on at every login, via a
   Shortcuts shortcut built from [`src/shortcuts`][shortcuts] (macOS has
   no other way to script it). Click __Add Shortcut__ once when asked.
+  Without iCloud (e.g. a managed Apple ID), make it by hand when asked:
+  Shortcuts → __+__ → __Set Focus__ (Do Not Disturb on until turned
+  off), named `Do Not Disturb On`.
 * Server: never sleep, restart after a power cut, Remote Login +
   Screen Sharing on, SSH password login off (asks first, and only once
   a key is authorised), an SMB share for the `d2` drive, and Time
