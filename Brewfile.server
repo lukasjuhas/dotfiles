@@ -30,3 +30,13 @@ brew "sane-backends"
 
 cask "obsidian"
 cask "transmission"
+
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+# Mac App Store: Safari extensions (turn them on in Safari → Settings →
+# Extensions; the App Store must be signed in for `mas`)
+# - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+brew "mas"
+
+mas "Wipr",               id: 1662217862
+mas "uBlock Origin Lite", id: 6745342698

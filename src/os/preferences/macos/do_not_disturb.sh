@@ -21,7 +21,16 @@ declare -r SHORTCUT_RECIPE="$(cd ../../.. && pwd)/shortcuts/$SHORTCUT_NAME.plist
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 has_shortcut() {
-    shortcuts list 2> /dev/null | grep -qxF "$SHORTCUT_NAME"
+    [ -n "$(shortcut_id)" ]
+}
+
+# `shortcuts run <name>` fails when two shortcuts share the name (e.g.
+# after importing twice), so run it by the first one's identifier.
+
+shortcut_id() {
+    shortcuts list --show-identifiers 2> /dev/null \
+        | sed -n "s/^$SHORTCUT_NAME (\([0-9A-F-]*\))$/\1/p" \
+        | head -n 1
 }
 
 import_shortcut() {
@@ -60,20 +69,29 @@ import_shortcut() {
 
 main() {
 
+    # `--login`: run by the login agent; just turn Do Not Disturb on.
+    if [ "$1" == "--login" ]; then
+        has_shortcut && shortcuts run "$(shortcut_id)"
+        return
+    fi
+
     print_in_purple "\n   Do Not Disturb\n\n"
 
     has_shortcut \
         || import_shortcut \
         || return 1
 
+    local id=""
+    id="$(shortcut_id)"
+
     execute \
-        "shortcuts run '$SHORTCUT_NAME'" \
+        "shortcuts run '$id'" \
         "Do Not Disturb on"
 
     execute \
-        "install_login_agent local.dotfiles.do-not-disturb /usr/bin/shortcuts run '$SHORTCUT_NAME'" \
+        "install_login_agent local.dotfiles.do-not-disturb /bin/bash '$(pwd)/do_not_disturb.sh' --login" \
         "Do Not Disturb on at every login (local.dotfiles.do-not-disturb)"
 
 }
 
-main
+main "$@"
