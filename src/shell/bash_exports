@@ -110,13 +110,13 @@ export PYTHONIOENCODING="UTF-8"
 
 # pnpm
 #
-# Add the pnpm global store to PATH idempotently so re-sourcing this
-# file does not duplicate entries.
+# Add the pnpm global bin dir (`pnpm bin -g`) to PATH idempotently so
+# re-sourcing this file does not duplicate entries.
 
 export PNPM_HOME="$HOME/Library/pnpm"
 case ":$PATH:" in
-    *":$PNPM_HOME:"*) ;;
-    *) export PATH="$PNPM_HOME:$PATH" ;;
+    *":$PNPM_HOME/bin:"*) ;;
+    *) export PATH="$PNPM_HOME/bin:$PATH" ;;
 esac
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
