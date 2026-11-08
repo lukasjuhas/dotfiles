@@ -20,8 +20,13 @@ services:
       - /etc/localtime:/etc/localtime:ro
       # The film scan archive (filmscan's archive_dir), as an External Library at /mnt/scans.
       - /Volumes/d2/Photos/Lightroom/SCANS:/mnt/scans:ro
+      # Server settings from this repo (immich-config.json, copied into ~/immich by immich.sh).
+      # With it, the web UI's Administration → Settings are read-only.
+      - ./immich-config.json:/config/immich-config.json:ro
     env_file:
       - .env
+    environment:
+      IMMICH_CONFIG_FILE: /config/immich-config.json
     ports:
       - '2283:2283'
     depends_on:
