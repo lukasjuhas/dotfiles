@@ -18,6 +18,10 @@ setup profile="":
 # Set up (or re-run on) the home server.
 setup-server: (setup "server")
 
+# Home server: start Immich, or apply a new pinned version (after `git pull`).
+immich:
+    bash {{DOTFILES}}/src/os/installs/immich.sh
+
 # Set up key-based SSH from this laptop to the home server.
 server-key:
     bash {{DOTFILES}}/src/os/set_server_ssh_key.sh

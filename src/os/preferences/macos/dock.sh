@@ -6,7 +6,8 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 # Pinned Dock apps per machine profile. Finder and the Bin are always
-# there, and running apps still show up next to these.
+# there, and running apps still show up next to these. Immich.app is a
+# Safari web app (made once by hand: see src/os/installs/immich.sh).
 
 dock_apps_for_profile() {
 
@@ -25,6 +26,7 @@ dock_apps_for_profile() {
             printf "%s\n" \
                 "/System/Applications/Apps.app" \
                 "/Applications/Safari.app" \
+                "$HOME/Applications/Immich.app" \
                 "/System/Applications/System Settings.app" \
                 "/System/Applications/Utilities/Terminal.app"
             ;;
