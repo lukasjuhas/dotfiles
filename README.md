@@ -48,7 +48,7 @@ Setup first asks __which machine this is__ (or pass
 |:-----------|:-----|
 | `personal` | [`Brewfile`][brewfile] + [`Brewfile.laptop`][brewfile laptop] + [`Brewfile.personal`][brewfile personal], filmscan, d2 mounted at login |
 | `work`     | [`Brewfile`][brewfile] + [`Brewfile.laptop`][brewfile laptop] + [`Brewfile.work`][brewfile work] |
-| `server`   | [`Brewfile`][brewfile] + [`Brewfile.server`][brewfile server], filmscan, [server settings][server prefs] |
+| `server`   | [`Brewfile`][brewfile] + [`Brewfile.server`][brewfile server], filmscan, [Immich][immich], [server settings][server prefs] |
 
 The setup process will:
 
@@ -79,6 +79,8 @@ The setup process will:
   Screen Sharing on, SSH password login off (asks first, and only once
   a key is authorised), an SMB share for the `d2` drive, and Time
   Machine backing up `d2` to `Backup-A` (hourly, versioned, encrypted).
+* Server: [Immich][immich] in OrbStack, showing the film scan archive
+  on `d2` read-only (see [Immich](#immich) below).
 * Set custom [macOS][preferences macos] defaults (Finder, Dock,
   trackpad, keyboard, screenshots, Stage Manager off, etc.).
 
@@ -104,6 +106,33 @@ cd ~/projects/dotfiles && ./src/os/setup.sh --profile server
 Re-run any time with `just setup-server`. From each laptop,
 `just server-key` makes sure key login to the server works.
 
+### Immich
+
+[Immich][immich] is a photo library next to Lightroom, running in
+OrbStack on the server ([`docker-compose.yml`][immich compose],
+installed by [`immich.sh`][immich install]). It shows the film scan
+archive on `d2` read-only, so it can never change or delete a scan.
+Its settings, database and thumbnails live in `~/immich` on the
+server, never in this repo (`.env` holds a generated database
+password).
+
+Once, after the first setup:
+
+1. Open OrbStack on the server and finish its setup (choose Docker),
+   then `just immich`.
+2. Open <http://erebor:2283> (over Tailscale) and create the admin
+   account.
+3. Administration → External Libraries → Create Library, import path
+   `/mnt/scans`, and these exclusion patterns: `**/*.RAF`, `**/raw/**`,
+   `**/Negatives/**`, `**/_pre-filmscan/**`, `**/._*`. Then scan.
+4. Account Settings → API Keys → New API Key, for filmscan
+   (`immich_api_key` in its config).
+5. On the server: Safari → <http://localhost:2283> → File → Add to
+   Dock (name it Immich), then `just prefs` pins it in the Dock.
+
+New Immich versions arrive as Renovate PRs that bump the pinned
+images; after merging, `git pull && just immich` on the server.
+
 What's inside
 -------------
 
@@ -124,6 +153,7 @@ What's inside
     ├── tmux/                                ← tmux.conf
     ├── vim/                                 ← minimal plugin-free vimrc
     ├── vscode/                              ← shared VS Code + Cursor config
+    ├── server/immich/                       ← Immich's docker-compose.yml
     └── os/
         ├── setup.sh                         ← entry point
         ├── create_symbolic_links.sh         ← bash/git/tmux/vim symlinks
@@ -131,6 +161,7 @@ What's inside
         ├── set_server_ssh_key.sh            ← laptops: key-based SSH to the server
         ├── installs/
         │   ├── filmscan.sh                  ← filmscan + pinned NegPy (uv)
+        │   ├── immich.sh                    ← server: Immich in OrbStack
         │   ├── npm.sh                       ← global npm updates
         │   ├── nvm.sh                       ← Node Version Manager (not on Homebrew)
         │   ├── python.sh                    ← latest Python via uv
@@ -223,6 +254,7 @@ just                # list recipes
 just setup work     # full one-shot setup (profile remembered afterwards)
 just setup-server   # same as `just setup server`
 just server-key     # laptops: make sure key SSH to the server works
+just immich         # server: start Immich / apply a new pinned version
 just install        # only run installers (Homebrew, casks, CLI)
 just bundle         # apply this machine's Brewfile layers
 just bundle-check   # what's missing vs. this machine's Brewfiles?
@@ -310,6 +342,9 @@ Inspired by and based on [@alrra/dotfiles][alrra]. Thanks!
 [brewfile personal]: Brewfile.personal
 [brewfile server]: Brewfile.server
 [brewfile work]: Brewfile.work
+[immich]: https://immich.app
+[immich compose]: src/server/immich/docker-compose.yml
+[immich install]: src/os/installs/immich.sh
 [filmscan]: https://github.com/lukasjuhas/filmscan
 [negpy]: https://github.com/marcinz606/NegPy
 [server key]: src/os/set_server_ssh_key.sh

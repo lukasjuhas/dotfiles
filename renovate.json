@@ -17,6 +17,11 @@
       "platformAutomerge": true
     },
     {
+      "description": "Immich's server and machine-learning images must stay on the same version",
+      "matchPackageNames": ["ghcr.io/immich-app/immich-server", "ghcr.io/immich-app/immich-machine-learning"],
+      "groupName": "immich"
+    },
+    {
       "description": "Group GitHub Actions updates into a single PR",
       "matchManagers": ["github-actions"],
       "groupName": "github-actions"
