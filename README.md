@@ -112,9 +112,17 @@ Re-run any time with `just setup-server`. From each laptop,
 OrbStack on the server ([`docker-compose.yml`][immich compose],
 installed by [`immich.sh`][immich install]). It shows the film scan
 archive on `d2` read-only, so it can never change or delete a scan.
-Its settings, database and thumbnails live in `~/immich` on the
-server, never in this repo (`.env` holds a generated database
-password).
+Its database and thumbnails live in `~/immich` on the server, never in
+this repo (`.env` holds a generated database password). Time Machine
+backs up `~/immich` except the live database, which can't be copied
+safely while it runs; Immich's own nightly database backups in
+`~/immich/library/backups` are the backup (restore one from Immich's
+first-run screen on a rebuilt server).
+
+Server settings (no map, no version check, a nightly library scan,
+date folders for uploads, daily database backups) come from
+[`immich-config.json`][immich config], so Administration → Settings is
+read-only: change the file, then `just immich`.
 
 Once, after the first setup:
 
@@ -122,12 +130,11 @@ Once, after the first setup:
    then `just immich`.
 2. Open <http://erebor:2283> (over Tailscale) and create the admin
    account.
-3. Administration → External Libraries → Create Library, import path
-   `/mnt/scans`, and these exclusion patterns: `**/*.RAF`, `**/raw/**`,
-   `**/Negatives/**`, `**/_pre-filmscan/**`, `**/._*`. Then scan.
-4. Account Settings → API Keys → New API Key, for filmscan
-   (`immich_api_key` in its config).
-5. On the server: Safari → <http://localhost:2283> → File → Add to
+3. Account Settings → API Keys → New API Key, for filmscan
+   (`immich_api_key` in its config). The first `filmscan immich`
+   creates the external library for the scan archive, with the right
+   exclusions.
+4. On the server: Safari → <http://localhost:2283> → File → Add to
    Dock (name it Immich), then `just prefs` pins it in the Dock.
 
 New Immich versions arrive as Renovate PRs that bump the pinned
@@ -345,6 +352,7 @@ Inspired by and based on [@alrra/dotfiles][alrra]. Thanks!
 [immich]: https://immich.app
 [immich compose]: src/server/immich/docker-compose.yml
 [immich install]: src/os/installs/immich.sh
+[immich config]: src/server/immich/immich-config.json
 [filmscan]: https://github.com/lukasjuhas/filmscan
 [negpy]: https://github.com/marcinz606/NegPy
 [server key]: src/os/set_server_ssh_key.sh

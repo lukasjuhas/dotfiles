@@ -1,0 +1,29 @@
+{
+  "backup": {
+    "database": {
+      "enabled": true,
+      "cronExpression": "0 02 * * *",
+      "keepLastAmount": 14
+    }
+  },
+  "library": {
+    "scan": {
+      "enabled": true,
+      "cronExpression": "0 0 * * *"
+    },
+    "watch": {
+      "enabled": false
+    }
+  },
+  "map": {
+    "enabled": false
+  },
+  "newVersionCheck": {
+    "enabled": false
+  },
+  "storageTemplate": {
+    "enabled": true,
+    "hashVerificationEnabled": true,
+    "template": "{{y}}/{{MM}}/{{dd}}/{{filename}}"
+  }
+}
